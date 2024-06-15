@@ -46,6 +46,10 @@
         // exception error messages. This makes spotting them easier and also it
         // makes it easier to use double or single quotes.
         "noUnusedTemplateLiteral": "off",
+        // Like in TSLint, I like to use the generic type for complex array types,
+        // for easier eye-parsing.
+        "useShorthandArrayType": "off",
+        "useConsistentArrayType": "off",
         // Keep it but with a few exceptions.
         "useNamingConvention": {
           "level": "error",
