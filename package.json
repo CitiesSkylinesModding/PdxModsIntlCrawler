@@ -1,0 +1,21 @@
+{
+  "name": "@toverux/pdxmods-intl-scrapper",
+  "module": "src/index.ts",
+  "type": "module",
+  "packageManager": "bun@1.1.13",
+  "scripts": {
+    "check-updates": "bunx npm-check-updates -i",
+    "check": "tsc && biome check --fix",
+    "start": "bun src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@biomejs/biome": "^1.8.1",
+    "lefthook": "^1.6.16"
+  }
+}
