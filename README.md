@@ -62,7 +62,7 @@ Example output:
 > 11. [Lumina](https://crowdin.com/project/lumina) by *Nyyoko* — 5,699 installs
 > 12. [SettingsManager](https://crowdin.com/project/cs2-settingsmanager) by *zakuro9715* — 647 installs
 
-### `md-changelog`
+#### `md-changelog`
 
 Generates a markdown changelog of all mods with a translation project by comparing `state.json` and
 `previous-state.json`.
