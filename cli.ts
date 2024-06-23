@@ -5,9 +5,9 @@ import * as path from 'node:path';
 import chalk from 'chalk';
 import yargs from 'yargs/yargs';
 
-const outputDir = path.join(import.meta.dir, 'output');
-const oldStateFilePath = path.join(outputDir, 'old-state.json');
-const stateFilePath = path.join(outputDir, 'state.json');
+const stateDir = path.join(import.meta.dir, 'state');
+const oldStateFilePath = path.join(stateDir, 'previous-state.json');
+const stateFilePath = path.join(stateDir, 'state.json');
 
 yargs(process.argv.slice(2))
     .scriptName(import.meta.file)
@@ -69,7 +69,7 @@ yargs(process.argv.slice(2))
 
             await fs.writeFile(
                 stateFilePath,
-                JSON.stringify(translatableMods, null, 2)
+                `${JSON.stringify(translatableMods, null, 2)}\n`
             );
 
             process.stdout.write(

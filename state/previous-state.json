@@ -1,0 +1,93 @@
+[
+  {
+    "modId": "81578",
+    "displayName": "SettingsManager",
+    "author": "zakuro9715",
+    "installedCount": 692,
+    "translationLink": "https://crowdin.com/project/cs2-settingsmanager"
+  },
+  {
+    "modId": "79794",
+    "displayName": "AdvancedSimulationSpeed",
+    "author": "zakuro9715",
+    "installedCount": 6865,
+    "translationLink": "https://crowdin.com/project/cs2-advancedsimulationspeed"
+  },
+  {
+    "modId": "75251",
+    "displayName": "Lumina",
+    "author": "Nyyoko",
+    "installedCount": 5937,
+    "translationLink": "https://crowdin.com/project/lumina"
+  },
+  {
+    "modId": "79237",
+    "displayName": "First Person Camera Continued",
+    "author": "Cgameworld",
+    "installedCount": 24750,
+    "translationLink": "https://crowdin.com/project/cs2-first-person-camera-continued"
+  },
+  {
+    "modId": "75862",
+    "displayName": "ExtendedRadio",
+    "author": "Triton Supreme",
+    "installedCount": 36877,
+    "translationLink": "https://crowdin.com/project/extendedradio"
+  },
+  {
+    "modId": "80529",
+    "displayName": "ExtraAssetsImporter",
+    "author": "Triton Supreme",
+    "installedCount": 43903,
+    "translationLink": "https://crowdin.com/project/extraassetsimporter"
+  },
+  {
+    "modId": "75804",
+    "displayName": "Skyve [BETA]",
+    "author": "TDW",
+    "installedCount": 30773,
+    "translationLink": "https://crowdin.com/project/load-order-mod-2"
+  },
+  {
+    "modId": "80528",
+    "displayName": "ExtraDetailingTools",
+    "author": "Triton Supreme",
+    "installedCount": 46266,
+    "translationLink": "https://crowdin.com/project/extradetailingtools"
+  },
+  {
+    "modId": "75826",
+    "displayName": "Plop the Growables",
+    "author": "algernon",
+    "installedCount": 75507,
+    "translationLink": "https://crowdin.com/project/plop-the-growables"
+  },
+  {
+    "modId": "75724",
+    "displayName": "ExtraLib",
+    "author": "Triton Supreme",
+    "installedCount": 207678,
+    "translationLink": "https://crowdin.com/project/extralib"
+  },
+  {
+    "modId": "75728",
+    "displayName": "ExtraLandscapingTools",
+    "author": "Triton Supreme",
+    "installedCount": 169043,
+    "translationLink": "https://crowdin.com/project/extralandscapingtools"
+  },
+  {
+    "modId": "75816",
+    "displayName": "Line Tool",
+    "author": "algernon",
+    "installedCount": 186802,
+    "translationLink": "https://crowdin.com/project/line-tool-cs2"
+  },
+  {
+    "modId": "74328",
+    "displayName": "529 Tiles",
+    "author": "algernon",
+    "installedCount": 192871,
+    "translationLink": "https://crowdin.com/project/592-tiles"
+  }
+]

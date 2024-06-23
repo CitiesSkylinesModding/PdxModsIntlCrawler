@@ -8,6 +8,9 @@ translation projects. This is helpful for translators to find mods that need the
 It uses the Paradox HTTP API to iterate over mod descriptions and external links and find the ones that have a
 translation project.
 
+This repository was made for Cities: Skylines II, but fork it and just delete `state/` to start fresh on another Paradox
+game.
+
 Supported platforms:
 - [Crowdin](https://crowdin.com)
 - [ParaTranz](https://paratranz.cn)
@@ -28,10 +31,10 @@ Scans the API for mods with translation projects and lists them as they are foun
 Takes the game to generate the list of mods for, the game slug ID can be found on Paradox's website, ex.
 https://mods.paradoxplaza.com/games/cities_skylines_2.
 
-Generates a git-ignored `output/state.json` file that serves to the other commands for further processing.
+Generates a `state/state.json` file that serves to the other commands for further processing.
 
-When there is already a `state.json` file, it will be moved to `output/old-state.json` and a new state file will be
-generated, allowing diffing and changelog generation.
+When there is already a `state/state.json` file, it will be moved to `state/previous-state.json` and a new state file
+will be generated, allowing diffing and changelog generation.
 
 Example:
 ```sh
@@ -40,7 +43,7 @@ Example:
 
 #### `md-list`
 
-Generates a markdown list of all mods with a translation project from the `output/state.json`.
+Generates a markdown list of all mods with a translation project from the `state/state.json`.
 
 Example output:
 
@@ -61,7 +64,8 @@ Example output:
 
 ### `md-changelog`
 
-Generates a markdown changelog of all mods with a translation project by comparing `state.json` and `old-state.json`.
+Generates a markdown changelog of all mods with a translation project by comparing `state.json` and
+`previous-state.json`.
 
 Example output:
 
