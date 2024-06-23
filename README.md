@@ -1,4 +1,6 @@
-# pdxmods-intl-scrapper
+# PdxModsIntlCrawler
+
+> Reference maintainer(s): @toverux
 
 A simple CLI tool to find mods from [Paradox Mods](https://mods.paradoxplaza.com/) proposing community-supported
 translation projects. This is helpful for translators to find mods that need their help.
