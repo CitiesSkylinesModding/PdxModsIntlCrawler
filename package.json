@@ -2,7 +2,7 @@
   "name": "@toverux/pdxmods-intl-scrapper",
   "module": "cli.ts",
   "type": "module",
-  "packageManager": "bun@1.1.13",
+  "packageManager": "bun@1.1.16",
   "scripts": {
     "check-updates": "bunx npm-check-updates -i",
     "check": "tsc && biome check --fix"
@@ -12,12 +12,13 @@
     "@types/yargs": "^17.0.32"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.5.2"
   },
   "dependencies": {
-    "@biomejs/biome": "^1.8.1",
+    "@biomejs/biome": "^1.8.2",
     "chalk": "^5.3.0",
-    "lefthook": "^1.6.16",
+    "lefthook": "^1.6.18",
     "yargs": "^17.7.2"
-  }
+  },
+  "trustedDependencies": ["@biomejs/biome"]
 }
