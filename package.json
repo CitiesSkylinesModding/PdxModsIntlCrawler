@@ -20,5 +20,5 @@
     "lefthook": "^1.6.18",
     "yargs": "^17.7.2"
   },
-  "trustedDependencies": ["@biomejs/biome"]
+  "trustedDependencies": ["@biomejs/biome", "lefthook"]
 }
