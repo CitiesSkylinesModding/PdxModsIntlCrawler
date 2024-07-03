@@ -80,7 +80,13 @@ yargs(process.argv.slice(2))
     .command({
         command: 'md-list',
         describe: `Generate markdown list of mods with translation links from output/state.json.`,
-        async handler() {
+        builder: args =>
+            args.option('short', {
+                type: 'boolean',
+                describe: `Use short list format.`,
+                default: false
+            }),
+        async handler(args) {
             if (!(await fs.exists(stateFilePath))) {
                 throw new Error(
                     `File not found: ${stateFilePath}. Run "discover" command first.`
@@ -93,7 +99,7 @@ yargs(process.argv.slice(2))
 
             const markdown = mods
                 .sort((a, b) => b.installedCount - a.installedCount)
-                .map(formatModMarkdownLine)
+                .map((mod, i) => formatModMarkdownLine(mod, i, args.short))
                 .join('\n');
 
             process.stdout.write(
@@ -104,7 +110,13 @@ yargs(process.argv.slice(2))
     .command({
         command: 'md-changelog',
         describe: `Generate markdown changelog of mods with translation links from output/state.json.`,
-        async handler() {
+        builder: args =>
+            args.option('short', {
+                type: 'boolean',
+                describe: `Use short list format.`,
+                default: false
+            }),
+        async handler(args) {
             let oldMods: Mod[] = [];
             if (await fs.exists(oldStateFilePath)) {
                 oldMods = JSON.parse(
@@ -122,20 +134,25 @@ yargs(process.argv.slice(2))
                 await fs.readFile(stateFilePath, 'utf8')
             );
 
-            const newMods = mods.filter(
-                mod => !oldMods.some(oldMod => oldMod.modId == mod.modId)
-            );
-
-            const deletedMods = oldMods.filter(
-                oldMod => !mods.some(mod => mod.modId == oldMod.modId)
-            );
-            const updatedMods = mods.filter(mod =>
-                oldMods.some(
-                    oldMod =>
-                        oldMod.modId == mod.modId &&
-                        oldMod.translationLink != mod.translationLink
+            const newMods = mods
+                .filter(
+                    mod => !oldMods.some(oldMod => oldMod.modId == mod.modId)
                 )
-            );
+                .sort((a, b) => b.installedCount - a.installedCount);
+
+            const deletedMods = oldMods
+                .filter(oldMod => !mods.some(mod => mod.modId == oldMod.modId))
+                .sort((a, b) => b.installedCount - a.installedCount);
+
+            const updatedMods = mods
+                .filter(mod =>
+                    oldMods.some(
+                        oldMod =>
+                            oldMod.modId == mod.modId &&
+                            oldMod.translationLink != mod.translationLink
+                    )
+                )
+                .sort((a, b) => b.installedCount - a.installedCount);
 
             // biome-ignore lint/complexity/useSimplifiedLogicExpression: nonsensical
             if (!newMods.length && !updatedMods.length && !deletedMods.length) {
@@ -150,19 +167,25 @@ yargs(process.argv.slice(2))
                 ...(newMods.length
                     ? [
                           `\nNew translation projects discovered:`,
-                          ...newMods.map(formatModMarkdownLine)
+                          ...newMods.map((mod, i) =>
+                              formatModMarkdownLine(mod, i, args.short)
+                          )
                       ]
                     : []),
                 ...(updatedMods.length
                     ? [
                           `\nMods that updated their translation project link:`,
-                          ...updatedMods.map(formatModMarkdownLine)
+                          ...updatedMods.map((mod, i) =>
+                              formatModMarkdownLine(mod, i, args.short)
+                          )
                       ]
                     : []),
                 ...(deletedMods.length
                     ? [
                           `\nDeleted mods or translation projects:`,
-                          ...deletedMods.map(formatModMarkdownLine)
+                          ...deletedMods.map((mod, i) =>
+                              formatModMarkdownLine(mod, i, args.short)
+                          )
                       ]
                     : []),
                 ''
@@ -324,12 +347,18 @@ async function parseApiResponse<TBody>(response: Response): Promise<TBody> {
     return body as TBody;
 }
 
-function formatModMarkdownLine(mod: Mod, index: number): string {
+function formatModMarkdownLine(mod: Mod, index: number, short = false): string {
+    if (short) {
+        const installedCount = Intl.NumberFormat().format(mod.installedCount);
+
+        return `${index + 1}. [${mod.displayName}](${mod.translationLink}) ⬇️ ${installedCount}`;
+    }
+
     // biome-ignore lint/style/noNonNullAssertion: can't be null here
     const host = new URL(mod.translationLink!).host;
     const platform = host == 'crowdin.com' ? '' : ` (on ${host})`;
 
     const installedCount = Intl.NumberFormat().format(mod.installedCount);
 
-    return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform} by *${mod.author}* — ${installedCount} installs`;
+    return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform} by *${mod.author}* — ⬇️ ${installedCount} installs`;
 }
