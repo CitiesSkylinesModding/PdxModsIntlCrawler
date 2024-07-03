@@ -3,91 +3,126 @@
     "modId": "81578",
     "displayName": "SettingsManager",
     "author": "zakuro9715",
-    "installedCount": 692,
+    "installedCount": 710,
     "translationLink": "https://crowdin.com/project/cs2-settingsmanager"
   },
   {
     "modId": "79794",
     "displayName": "AdvancedSimulationSpeed",
     "author": "zakuro9715",
-    "installedCount": 6865,
+    "installedCount": 7074,
     "translationLink": "https://crowdin.com/project/cs2-advancedsimulationspeed"
   },
   {
     "modId": "75251",
     "displayName": "Lumina",
     "author": "Nyyoko",
-    "installedCount": 5937,
+    "installedCount": 5997,
     "translationLink": "https://crowdin.com/project/lumina"
+  },
+  {
+    "modId": "74539",
+    "displayName": "Image Overlay",
+    "author": "algernon",
+    "installedCount": 10670,
+    "translationLink": "https://crowdin.com/project/image-overlay"
   },
   {
     "modId": "79237",
     "displayName": "First Person Camera Continued",
     "author": "Cgameworld",
-    "installedCount": 24750,
+    "installedCount": 25505,
     "translationLink": "https://crowdin.com/project/cs2-first-person-camera-continued"
   },
   {
     "modId": "75862",
     "displayName": "ExtendedRadio",
     "author": "Triton Supreme",
-    "installedCount": 36877,
+    "installedCount": 35605,
     "translationLink": "https://crowdin.com/project/extendedradio"
   },
   {
     "modId": "80529",
     "displayName": "ExtraAssetsImporter",
     "author": "Triton Supreme",
-    "installedCount": 43903,
+    "installedCount": 45384,
     "translationLink": "https://crowdin.com/project/extraassetsimporter"
   },
   {
     "modId": "75804",
     "displayName": "Skyve [BETA]",
     "author": "TDW",
-    "installedCount": 30773,
+    "installedCount": 32393,
     "translationLink": "https://crowdin.com/project/load-order-mod-2"
   },
   {
     "modId": "80528",
     "displayName": "ExtraDetailingTools",
     "author": "Triton Supreme",
-    "installedCount": 46266,
+    "installedCount": 48211,
     "translationLink": "https://crowdin.com/project/extradetailingtools"
   },
   {
     "modId": "75826",
     "displayName": "Plop the Growables",
     "author": "algernon",
-    "installedCount": 75507,
+    "installedCount": 76795,
     "translationLink": "https://crowdin.com/project/plop-the-growables"
+  },
+  {
+    "modId": "75613",
+    "displayName": "Water Features",
+    "author": "yenyang",
+    "installedCount": 136877,
+    "translationLink": "https://crowdin.com/project/csl2-mod-tree-controller"
+  },
+  {
+    "modId": "75993",
+    "displayName": "Tree Controller",
+    "author": "yenyang",
+    "installedCount": 138720,
+    "translationLink": "https://crowdin.com/project/csl2-mod-water-features"
   },
   {
     "modId": "75724",
     "displayName": "ExtraLib",
     "author": "Triton Supreme",
-    "installedCount": 207678,
+    "installedCount": 209835,
     "translationLink": "https://crowdin.com/project/extralib"
+  },
+  {
+    "modId": "75250",
+    "displayName": "Better Bulldozer",
+    "author": "yenyang",
+    "installedCount": 186327,
+    "translationLink": "https://crowdin.com/project/cs2-mods-better-bulldozer"
   },
   {
     "modId": "75728",
     "displayName": "ExtraLandscapingTools",
     "author": "Triton Supreme",
-    "installedCount": 169141,
+    "installedCount": 171112,
     "translationLink": "https://crowdin.com/project/extralandscapingtools"
   },
   {
     "modId": "75816",
     "displayName": "Line Tool",
     "author": "algernon",
-    "installedCount": 186802,
+    "installedCount": 189673,
     "translationLink": "https://crowdin.com/project/line-tool-cs2"
   },
   {
     "modId": "74328",
     "displayName": "529 Tiles",
     "author": "algernon",
-    "installedCount": 192871,
+    "installedCount": 193804,
     "translationLink": "https://crowdin.com/project/592-tiles"
+  },
+  {
+    "modId": "74604",
+    "displayName": "Anarchy",
+    "author": "yenyang",
+    "installedCount": 242105,
+    "translationLink": "https://crowdin.com/project/csl2-mod-anarchy"
   }
 ]
