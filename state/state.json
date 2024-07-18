@@ -3,161 +3,161 @@
     "modId": "79732",
     "displayName": "[UNSTABLE] TLE Canary",
     "author": "C2VMTLE",
-    "installedCount": 168,
+    "installedCount": 172,
     "translationLink": "https://crowdin.com/project/Cities2-TrafficLightsEnhancement"
   },
   {
     "modId": "81578",
     "displayName": "SettingsManager",
     "author": "zakuro9715",
-    "installedCount": 769,
+    "installedCount": 802,
     "translationLink": "https://crowdin.com/project/cs2-settingsmanager"
   },
   {
     "modId": "84638",
     "displayName": "Recolor",
     "author": "yenyang",
-    "installedCount": 1751,
+    "installedCount": 4836,
     "translationLink": "https://crowdin.com/project/csl2-mod-recolor"
   },
   {
     "modId": "75251",
     "displayName": "Lumina",
     "author": "Nyyoko",
-    "installedCount": 5890,
+    "installedCount": 6651,
     "translationLink": "https://crowdin.com/project/lumina"
   },
   {
     "modId": "79794",
     "displayName": "AdvancedSimulationSpeed",
     "author": "zakuro9715",
-    "installedCount": 8648,
+    "installedCount": 9563,
     "translationLink": "https://crowdin.com/project/cs2-advancedsimulationspeed"
   },
   {
     "modId": "74539",
     "displayName": "Image Overlay",
     "author": "algernon",
-    "installedCount": 11432,
+    "installedCount": 11996,
     "translationLink": "https://crowdin.com/project/image-overlay"
-  },
-  {
-    "modId": "79237",
-    "displayName": "First Person Camera Continued",
-    "author": "Cgameworld",
-    "installedCount": 31186,
-    "translationLink": "https://crowdin.com/project/cs2-first-person-camera-continued"
   },
   {
     "modId": "75862",
     "displayName": "ExtendedRadio",
     "author": "Triton Supreme",
-    "installedCount": 37885,
+    "installedCount": 39319,
     "translationLink": "https://crowdin.com/project/extendedradio"
+  },
+  {
+    "modId": "79237",
+    "displayName": "First Person Camera Continued",
+    "author": "Cgameworld",
+    "installedCount": 35590,
+    "translationLink": "https://crowdin.com/project/cs2-first-person-camera-continued"
   },
   {
     "modId": "80529",
     "displayName": "ExtraAssetsImporter",
     "author": "Triton Supreme",
-    "installedCount": 55351,
+    "installedCount": 61593,
     "translationLink": "https://crowdin.com/project/extraassetsimporter"
   },
   {
     "modId": "75804",
     "displayName": "Skyve [BETA]",
     "author": "TDW",
-    "installedCount": 38032,
+    "installedCount": 40305,
     "translationLink": "https://crowdin.com/project/load-order-mod-2"
   },
   {
     "modId": "80528",
     "displayName": "ExtraDetailingTools",
     "author": "Triton Supreme",
-    "installedCount": 58193,
+    "installedCount": 65521,
     "translationLink": "https://crowdin.com/project/extradetailingtools"
   },
   {
     "modId": "75826",
     "displayName": "Plop the Growables",
     "author": "algernon",
-    "installedCount": 85533,
+    "installedCount": 91604,
     "translationLink": "https://crowdin.com/project/plop-the-growables"
   },
   {
     "modId": "78960",
     "displayName": "Traffic Lights Enhancement Alpha",
     "author": "C2VMTLE",
-    "installedCount": 85224,
+    "installedCount": 93581,
     "translationLink": "https://crowdin.com/project/Cities2-TrafficLightsEnhancement"
   },
   {
     "modId": "77240",
     "displayName": "Find It",
     "author": "TDW",
-    "installedCount": 134642,
+    "installedCount": 144868,
     "translationLink": "https://crowdin.com/project/find-it-csii"
   },
   {
     "modId": "75613",
     "displayName": "Water Features",
     "author": "yenyang",
-    "installedCount": 147977,
+    "installedCount": 155393,
     "translationLink": "https://crowdin.com/project/csl2-mod-tree-controller"
   },
   {
     "modId": "75993",
     "displayName": "Tree Controller",
     "author": "yenyang",
-    "installedCount": 147308,
+    "installedCount": 152681,
     "translationLink": "https://crowdin.com/project/csl2-mod-water-features"
   },
   {
     "modId": "75724",
     "displayName": "ExtraLib",
     "author": "Triton Supreme",
-    "installedCount": 234241,
+    "installedCount": 248830,
     "translationLink": "https://crowdin.com/project/extralib"
   },
   {
     "modId": "75250",
     "displayName": "Better Bulldozer",
     "author": "yenyang",
-    "installedCount": 207806,
+    "installedCount": 220784,
     "translationLink": "https://crowdin.com/project/cs2-mods-better-bulldozer"
   },
   {
     "modId": "75728",
     "displayName": "ExtraLandscapingTools",
     "author": "Triton Supreme",
-    "installedCount": 188849,
+    "installedCount": 200020,
     "translationLink": "https://crowdin.com/project/extralandscapingtools"
   },
   {
     "modId": "75816",
     "displayName": "Line Tool",
     "author": "algernon",
-    "installedCount": 209739,
+    "installedCount": 222495,
     "translationLink": "https://crowdin.com/project/line-tool-cs2"
-  },
-  {
-    "modId": "80095",
-    "displayName": "Traffic",
-    "author": "krzychu124",
-    "installedCount": 191037,
-    "translationLink": "https://crowdin.com/project/traffic-cs2"
   },
   {
     "modId": "74328",
     "displayName": "529 Tiles",
     "author": "algernon",
-    "installedCount": 206026,
+    "installedCount": 213722,
     "translationLink": "https://crowdin.com/project/592-tiles"
+  },
+  {
+    "modId": "80095",
+    "displayName": "Traffic",
+    "author": "krzychu124",
+    "installedCount": 216038,
+    "translationLink": "https://crowdin.com/project/traffic-cs2"
   },
   {
     "modId": "74604",
     "displayName": "Anarchy",
     "author": "yenyang",
-    "installedCount": 271658,
+    "installedCount": 289790,
     "translationLink": "https://crowdin.com/project/csl2-mod-anarchy"
   }
 ]
