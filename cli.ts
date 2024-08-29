@@ -4,6 +4,7 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import chalk from 'chalk';
 import yargs from 'yargs/yargs';
+import config from './config';
 
 const stateDir = path.join(import.meta.dir, 'state');
 const oldStateFilePath = path.join(stateDir, 'previous-state.json');
@@ -18,26 +19,14 @@ yargs(process.argv.slice(2))
     .recommendCommands()
     .demandCommand()
     .command({
-        command: 'discover [game]',
-        describe: `Browse Paradox Mods to search for translation platforms links and writes results to output/state.json for later markdown generation.`,
-        builder: args =>
-            args
-                .option('game', {
-                    type: 'string',
-                    describe: `The game for which to search mods for.`,
-                    demandOption: true
-                })
-                .option('tags', {
-                    type: 'array',
-                    describe: `Filter mods on tags. Quote tags with spaces, ex: "Code Mods".`,
-                    default: []
-                }),
-        async handler(args) {
+        command: 'discover',
+        describe: `Browse Paradox Mods to search for translation platforms links and writes results to output/state.json for later markdown/wikicode generation. Uses configuration from config.ts.`,
+        async handler() {
             process.stdout.write(chalk.bold(`=> Listing mods\n\n`));
 
             const listingMods = await listMods(
-                args.game,
-                args.tags.map(String)
+                config.gameId,
+                config.tags.map(String)
             );
 
             process.stdout.write(chalk.bold(`\n=> Fetching mod details\n\n`));
@@ -73,18 +62,18 @@ yargs(process.argv.slice(2))
             );
 
             process.stdout.write(
-                `\nRun ${chalk.bold('md-list')} or ${chalk.bold('md-changelog')} subcommands for generating markdown summaries.\n`
+                `\nRun ${chalk.bold('list')} or ${chalk.bold('changelog')} subcommands for generating summaries.\n`
             );
         }
     })
     .command({
-        command: 'md-list',
-        describe: `Generate markdown list of mods with translation links from output/state.json.`,
+        command: 'list',
+        describe: `Generate a list of mods with translation links from output/state.json.`,
         builder: args =>
-            args.option('short', {
-                type: 'boolean',
-                describe: `Use short list format.`,
-                default: false
+            args.option('fmt', {
+                type: 'string',
+                choices: ['markdown', 'wiki'] as const,
+                describe: `Format to use as output, overrides format specified in config.ts.`
             }),
         async handler(args) {
             if (!(await fs.exists(stateFilePath))) {
@@ -97,26 +86,28 @@ yargs(process.argv.slice(2))
                 await fs.readFile(stateFilePath, 'utf8')
             );
 
-            const markdown = mods
+            const listString = mods
                 .sort((a, b) => b.installedCount - a.installedCount)
-                .map((mod, i) => formatModMarkdownLine(mod, i, args.short))
+                .map((mod, i) =>
+                    formatModLine(mod, i, args.fmt ?? config.listFormat)
+                )
                 .join('\n');
 
-            process.stdout.write(
-                `This list is generated automatically. See second post in thread for more info.\n\n${markdown}\n`
-            );
+            process.stdout.write(`${listString}\n`);
         }
     })
     .command({
-        command: 'md-changelog',
-        describe: `Generate markdown changelog of mods with translation links from output/state.json.`,
+        command: 'changelog',
+        describe: `Generate a changelog of mods with translation links from output/state.json.`,
         builder: args =>
-            args.option('short', {
-                type: 'boolean',
-                describe: `Use short list format.`,
-                default: false
+            args.option('fmt', {
+                type: 'string',
+                choices: ['markdown', 'wiki'] as const,
+                describe: `Format to use as output, overrides format specified in config.ts.`
             }),
         async handler(args) {
+            const format = args.fmt ?? config.changelogFormat;
+
             let oldMods: Mod[] = [];
             if (await fs.exists(oldStateFilePath)) {
                 oldMods = JSON.parse(
@@ -162,13 +153,12 @@ yargs(process.argv.slice(2))
                 return;
             }
 
-            const markdown = [
-                `**List update!**`,
+            const listString = [
                 ...(newMods.length
                     ? [
                           `\nNew translation projects discovered:`,
                           ...newMods.map((mod, i) =>
-                              formatModMarkdownLine(mod, i, args.short)
+                              formatModLine(mod, i, format)
                           )
                       ]
                     : []),
@@ -176,7 +166,7 @@ yargs(process.argv.slice(2))
                     ? [
                           `\nMods that updated their translation project link:`,
                           ...updatedMods.map((mod, i) =>
-                              formatModMarkdownLine(mod, i, args.short)
+                              formatModLine(mod, i, format)
                           )
                       ]
                     : []),
@@ -184,14 +174,14 @@ yargs(process.argv.slice(2))
                     ? [
                           `\nDeleted mods or translation projects:`,
                           ...deletedMods.map((mod, i) =>
-                              formatModMarkdownLine(mod, i, args.short)
+                              formatModLine(mod, i, format)
                           )
                       ]
                     : []),
                 ''
             ].join('\n');
 
-            process.stdout.write(markdown);
+            process.stdout.write(`${listString}\n`);
         }
     }).argv;
 
@@ -347,13 +337,17 @@ async function parseApiResponse<TBody>(response: Response): Promise<TBody> {
     return body as TBody;
 }
 
-function formatModMarkdownLine(mod: Mod, index: number, short = false): string {
-    if (short) {
-        const installedCount = Intl.NumberFormat().format(mod.installedCount);
+function formatModLine(
+    mod: Mod,
+    index: number,
+    format: 'markdown' | 'wiki'
+): string {
+    return format == 'markdown'
+        ? formatModMarkdownLine(mod, index)
+        : formatModWikiLine(mod, index);
+}
 
-        return `${index + 1}. [${mod.displayName}](${mod.translationLink}) ⬇️ ${installedCount}`;
-    }
-
+function formatModMarkdownLine(mod: Mod, index: number): string {
     // biome-ignore lint/style/noNonNullAssertion: can't be null here
     const host = new URL(mod.translationLink!).host;
     const platform = host == 'crowdin.com' ? '' : ` (on ${host})`;
@@ -361,4 +355,8 @@ function formatModMarkdownLine(mod: Mod, index: number, short = false): string {
     const installedCount = Intl.NumberFormat().format(mod.installedCount);
 
     return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform} by *${mod.author}* — ⬇️ ${installedCount} installs`;
+}
+
+function formatModWikiLine(_mod: Mod, _index: number): string {
+    throw new Error('Not implemented');
 }

@@ -39,6 +39,8 @@
       "style": {
         // I must admit I just like it.
         "noCommaOperator": "off",
+        // I promise not to abuse it.
+        "noDefaultExport": "off",
         // Same reason as performance.noBarrelFile.
         "noNamespaceImport": "off",
         "noParameterProperties": "off",
