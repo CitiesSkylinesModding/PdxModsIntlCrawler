@@ -21,7 +21,13 @@ yargs(process.argv.slice(2))
     .command({
         command: 'discover',
         describe: `Browse Paradox Mods to search for translation platforms links and writes results to output/state.json for later markdown/wikicode generation. Uses configuration from config.ts.`,
-        async handler() {
+        builder: args =>
+            args.option('write', {
+                type: 'boolean',
+                describe: `Whether to update state files even if no new/updated/deleted mods were detected.`,
+                default: false
+            }),
+        async handler(args) {
             process.stdout.write(chalk.bold(`=> Listing mods\n\n`));
 
             const listingMods = await listMods(
@@ -37,14 +43,34 @@ yargs(process.argv.slice(2))
 
             const translatableMods = mods
                 .filter(mod => mod.translationLink)
-                .map(mod => {
-                    const { os, ...serializedMod } = mod;
-                    return serializedMod;
-                });
+                .sort(
+                    (a, b) =>
+                        Number.parseInt(a.modId, 10) -
+                        Number.parseInt(b.modId, 10)
+                );
 
             process.stdout.write(
                 `Found ${chalk.bold.greenBright(translatableMods.length)} mods with translations.\n\n`
             );
+
+            if (!args.write && (await fs.exists(oldStateFilePath))) {
+                const oldMods: Mod[] = JSON.parse(
+                    await fs.readFile(stateFilePath, 'utf8')
+                );
+
+                const newIds = new Set(translatableMods.map(mod => mod.modId));
+                const oldIds = new Set(oldMods.map(mod => mod.modId));
+
+                const hasChanges = newIds.symmetricDifference(oldIds).size > 0;
+
+                if (!hasChanges) {
+                    process.stdout.write(
+                        `${chalk.bold(`No new/updated/deleted mods detected.`)} Re-run the command using --write to force state files update.\n`
+                    );
+
+                    return;
+                }
+            }
 
             if (await fs.exists(stateFilePath)) {
                 process.stdout.write(
@@ -300,7 +326,7 @@ async function getModsDetails(
         const { modDetail } = await parseApiResponse<Body>(response);
 
         const textToSearch = `
-            ${modDetail.externalLinks.map(link => link.url)}
+            ${modDetail.externalLinks.map(link => `${link.url}\n`)}
             ${modDetail.longDescription}`;
 
         const linkLike = textToSearch.match(
@@ -354,7 +380,7 @@ function formatModMarkdownLine(mod: Mod, index: number): string {
 
     const installedCount = Intl.NumberFormat().format(mod.installedCount);
 
-    return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform} by *${mod.author}* — ⬇️ ${installedCount} installs`;
+    return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform} ([mod page](https://mods.paradoxplaza.com/mods/${mod.modId}/${mod.os})) by *${mod.author}* — ⬇️ ${installedCount} installs`;
 }
 
 function formatModWikiLine(_mod: Mod, _index: number): string {
