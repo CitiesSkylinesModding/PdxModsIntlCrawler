@@ -52,7 +52,7 @@ Generates a list of all mods with a translation project from the `state/state.js
 Example:
 
 ```
-./cli.ts list [--fmt markdown|wiki]
+./cli.ts list
 ```
 
 Example output:
@@ -87,7 +87,7 @@ Generates a changelog of all mods with a translation project by comparing `state
 Example:
 
 ```
-./cli.ts changelog [--fmt markdown|wiki]
+./cli.ts changelog
 ```
 
 Example output:
