@@ -115,7 +115,7 @@ yargs(process.argv.slice(2))
 
             const listString = mods
                 .sort((a, b) => b.installedCount - a.installedCount)
-                .map((mod, i) => formatModLine(mod, i))
+                .map((mod, i) => formatModLine(mod, i, false))
                 .join('\n');
 
             let template = '{{list}}\n';
@@ -208,22 +208,29 @@ yargs(process.argv.slice(2))
             }
 
             const listString = [
+                '**List update!**',
                 ...(newMods.length
                     ? [
                           `\nNew translation projects discovered:`,
-                          ...newMods.map(formatModLine)
+                          ...newMods.map((mod, i) =>
+                              formatModLine(mod, i, true)
+                          )
                       ]
                     : []),
                 ...(updatedMods.length
                     ? [
                           `\nMods that updated their translation project link:`,
-                          ...updatedMods.map(formatModLine)
+                          ...updatedMods.map((mod, i) =>
+                              formatModLine(mod, i, true)
+                          )
                       ]
                     : []),
                 ...(deletedMods.length
                     ? [
                           `\nDeleted mods or translation projects:`,
-                          ...deletedMods.map(formatModLine)
+                          ...deletedMods.map((mod, i) =>
+                              formatModLine(mod, i, true)
+                          )
                       ]
                     : []),
                 ''
@@ -385,12 +392,12 @@ async function parseApiResponse<TBody>(response: Response): Promise<TBody> {
     return body as TBody;
 }
 
-function formatModLine(mod: Mod, index: number): string {
+function formatModLine(mod: Mod, index: number, changelog: boolean): string {
     // biome-ignore lint/style/noNonNullAssertion: can't be null here
     const host = new URL(mod.translationLink!).host;
     const platform = host == 'crowdin.com' ? '' : ` (on ${host})`;
 
     const installedCount = Intl.NumberFormat().format(mod.installedCount);
 
-    return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform} ([mod page](https://mods.paradoxplaza.com/mods/${mod.modId}/${mod.os})) by *${mod.author}* — ⬇️ ${installedCount} installs`;
+    return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform}${changelog ? '' : ` ([mod page](https://mods.paradoxplaza.com/mods/${mod.modId}/${mod.os}))`} by *${mod.author}* — ⬇️ ${installedCount} installs`;
 }
