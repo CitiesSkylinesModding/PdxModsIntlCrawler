@@ -2,6 +2,7 @@
 
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
+import * as process from 'node:process';
 import chalk from 'chalk';
 import yargs from 'yargs/yargs';
 import config from './config';
@@ -95,7 +96,13 @@ yargs(process.argv.slice(2))
     .command({
         command: 'list',
         describe: `Generate a markdown list of mods with translation links from output/state.json.`,
-        async handler() {
+        builder: args =>
+            args.option('write', {
+                type: 'boolean',
+                describe: `Whether to write the content generated to the file specified in the config.ts file.`,
+                default: false
+            }),
+        async handler(args) {
             if (!(await fs.exists(stateFilePath))) {
                 throw new Error(
                     `File not found: ${stateFilePath}. Run "discover" command first.`
@@ -111,7 +118,43 @@ yargs(process.argv.slice(2))
                 .map((mod, i) => formatModLine(mod, i))
                 .join('\n');
 
-            process.stdout.write(`${listString}\n`);
+            let template = '{{list}}\n';
+
+            if (config.listMarkdownTemplateFilePath) {
+                const listTemplateFilePath = path.resolve(
+                    import.meta.dir,
+                    config.listMarkdownTemplateFilePath
+                );
+
+                if (await fs.exists(listTemplateFilePath)) {
+                    template = await fs.readFile(listTemplateFilePath, 'utf8');
+                } else {
+                    process.stderr.write(
+                        chalk.bold.red(
+                            `Template file not found: ${listTemplateFilePath}\n`
+                        )
+                    );
+                }
+            }
+
+            const contents = template
+                .replace('{{date}}', new Date().toLocaleString())
+                .replace('{{list}}', listString);
+
+            process.stdout.write(contents);
+
+            if (args.write) {
+                const filePath = path.resolve(
+                    import.meta.dir,
+                    config.listMarkdownFilePath
+                );
+
+                await fs.writeFile(filePath, contents);
+
+                process.stdout.write(
+                    chalk.bold(`\nWritten to "${filePath}".\n`)
+                );
+            }
         }
     })
     .command({

@@ -5,7 +5,8 @@
   "packageManager": "bun@1.1.26",
   "scripts": {
     "pm:update": "bunx npm-check-updates -i && bun update",
-    "check": "tsc && biome check --fix"
+    "check": "tsc && biome check --fix",
+    "push": "git add state \"List of Mods Seeking Translators.md\" && git commit -m \"chore(state): list update\" && git push"
   },
   "devDependencies": {
     "@types/bun": "latest",
