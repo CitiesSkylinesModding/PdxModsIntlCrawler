@@ -2,10 +2,8 @@
   "name": "@toverux/pdxmods-intl-scrapper",
   "module": "cli.ts",
   "type": "module",
-  "packageManager": "bun@1.1.26",
   "scripts": {
-    "pm:update": "bunx npm-check-updates -i && bun update",
-    "check": "tsc && biome check --fix",
+    "check": "bun --bun tsc && biome check --fix",
     "push": "git add state \"List of Mods Seeking Translators.md\" && git commit -m \"chore(state): list update\" && git push"
   },
   "devDependencies": {
@@ -18,8 +16,8 @@
   "dependencies": {
     "@biomejs/biome": "^1.9.4",
     "chalk": "^5.6.2",
-    "lefthook": "^1.13.6",
-    "yargs": "^17.7.2"
+    "lefthook": "^2.0.4",
+    "yargs": "^18.0.0"
   },
   "trustedDependencies": ["@biomejs/biome", "lefthook"]
 }

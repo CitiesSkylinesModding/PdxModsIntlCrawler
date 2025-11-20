@@ -19,8 +19,8 @@ Supported platforms:
 
 ## Usage
 
-- Install [Bun](https://bun.sh),
-- Run `bun install`,
+- Install [mise-en-place](https://mise.jdx.dev),
+- Run `mise i` (to install the required version of bun),
 - Run `./cli.ts help`.
 - Edit `config.ts` to set the constants to use each time you use the CLI once and for all (ex. the
   game ID).
