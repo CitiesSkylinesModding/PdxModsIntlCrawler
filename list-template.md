@@ -3,9 +3,8 @@
 This list was automatically generated on {{date}}, listing mods that specified a link to a
 translation project in their description or external links section.
 
-[Crowdin](https://crowdin.com) and [ParaTranz](https://paratranz.cn) are supported, however a few
-mod authors still use only GitHub PRs only to manage their translations and those are not listed
-here. Other platforms can be supported on request.
+[Crowdin](https://crowdin.com) and other common platforms are supported, however a few mod authors
+still use only GitHub PRs only to manage their translations and those are not listed here.
 
 ## Mods on Paradox Mods
 

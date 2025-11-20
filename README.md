@@ -11,11 +11,16 @@ that have a translation project.
 This repository was made for Cities: Skylines II, but fork it and just delete `state/` to start
 fresh on another Paradox game.
 
-Supported platforms:
+Supported platforms include:
 
 - [Crowdin](https://crowdin.com)
-- [ParaTranz](https://paratranz.cn)
-- Other platforms can be supported easily on request!
+- [Paratranz](https://paratranz.cn)
+- [Weblate](https://weblate.org)
+- [Transifex](https://transifex.com)
+- [POEditor](https://poeditor.com)
+- [Lokalise](https://lokalise.com)
+- [GitLocalize](https://gitlocalize.com)
+- [LingoHub](https://lingohub.com)
 
 ## Usage
 
