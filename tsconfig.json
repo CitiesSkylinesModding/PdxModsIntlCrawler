@@ -1,37 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": ["@toverux/blanc-hopital/tsconfig/strict", "@toverux/blanc-hopital/tsconfig/bun"],
   "compilerOptions": {
-    "noEmit": true,
-    "sourceMap": true,
-    "declaration": false,
-    "target": "ES2022",
-    "module": "ES2022",
-    "lib": ["ES2022", "dom"],
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "importHelpers": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-
-    // Strictness options following.
-    // I want the strictest possible TypeScript settings.
-    // https://github.com/tsconfig/bases/blob/main/bases/strictest.json
-    "allowJs": false,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-    "exactOptionalPropertyTypes": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    // Just not this one because it's not really a strictness thing and I don't like it.
-    "noPropertyAccessFromIndexSignature": false,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "allowImportingTsExtensions": true
   }
 }
