@@ -5,7 +5,11 @@ import * as path from 'node:path';
 import * as process from 'node:process';
 import chalk from 'chalk';
 import yargs from 'yargs/yargs';
-import config from './config';
+import config from './config.js';
+
+// Hoisted regex for translation platforms (performance/useTopLevelRegex)
+const TRANSLATION_LINK_RE =
+    /(crowdin\.com\/(?:project|translate)\/[-a-z0-9]+|paratranz\.cn\/projects\/[0-9]+|weblate\.[^\s/]+\/projects\/[-a-z0-9_]+|transifex\.com\/[a-z0-9_-]+\/[a-z0-9_-]+|poeditor\.com\/(?:projects|join\/project)\/[A-Za-z0-9_-]+|lokalise\.com\/[a-z0-9_-]+|oneskyapp\.com\/(?:project|crowd)\/[0-9]+|gitlocalize\.com\/[a-z0-9_-]+\/[a-z0-9_-]+|pontoon\.mozilla\.org\/[A-Za-z0-9_-]+|translatewiki\.net\/wiki\/[A-Za-z0-9_:-]+|lingohub\.com\/[a-z0-9_-]+\/[a-z0-9_-]+)/i;
 
 const stateDir = path.join(import.meta.dir, 'state');
 const oldStateFilePath = path.join(stateDir, 'previous-state.json');
@@ -62,7 +66,9 @@ yargs(process.argv.slice(2))
                 const newIds = new Set(translatableMods.map(mod => mod.modId));
                 const oldIds = new Set(oldMods.map(mod => mod.modId));
 
-                const hasChanges = newIds.symmetricDifference(oldIds).size > 0;
+                const hasChanges =
+                    [...newIds].some(id => !oldIds.has(id)) ||
+                    [...oldIds].some(id => !newIds.has(id));
 
                 if (!hasChanges) {
                     process.stdout.write(
@@ -198,8 +204,11 @@ yargs(process.argv.slice(2))
                 )
                 .sort((a, b) => b.installedCount - a.installedCount);
 
-            // biome-ignore lint/complexity/useSimplifiedLogicExpression: nonsensical
-            if (!newMods.length && !updatedMods.length && !deletedMods.length) {
+            if (
+                newMods.length === 0 &&
+                updatedMods.length === 0 &&
+                deletedMods.length === 0
+            ) {
                 process.stdout.write(
                     `No changes detected between ${stateFilePath} and ${oldStateFilePath} (if it exists).\n`
                 );
@@ -209,7 +218,7 @@ yargs(process.argv.slice(2))
 
             const listString = [
                 '**List update!**',
-                ...(newMods.length
+                ...(newMods.length > 0
                     ? [
                           `\nNew translation projects discovered:`,
                           ...newMods.map((mod, i) =>
@@ -217,7 +226,7 @@ yargs(process.argv.slice(2))
                           )
                       ]
                     : []),
-                ...(updatedMods.length
+                ...(updatedMods.length > 0
                     ? [
                           `\nMods that updated their translation project link:`,
                           ...updatedMods.map((mod, i) =>
@@ -225,7 +234,7 @@ yargs(process.argv.slice(2))
                           )
                       ]
                     : []),
-                ...(deletedMods.length
+                ...(deletedMods.length > 0
                     ? [
                           `\nDeleted mods or translation projects:`,
                           ...deletedMods.map((mod, i) =>
@@ -256,7 +265,7 @@ async function listMods(
     gameName: string,
     tags: readonly string[]
 ): Promise<readonly ListingMod[]> {
-    const allMods = [];
+    const allMods: ListingMod[] = [];
 
     let page = 0;
     do {
@@ -358,13 +367,13 @@ async function getModsDetails(
             ${modDetail.externalLinks.map(link => `${link.url}\n`)}
             ${modDetail.longDescription}`;
 
-        const linkLike = textToSearch.match(
-            /(crowdin\.com\/project\/[-a-z0-9]+|paratranz\.cn\/projects\/[0-9]+)/im
-        )?.[0];
+        const translationLinkLike =
+            textToSearch.match(TRANSLATION_LINK_RE)?.[0];
 
         return {
             ...listingMod,
-            translationLink: linkLike && `https://${linkLike}`
+            translationLink:
+                translationLinkLike && `https://${translationLinkLike}`
         };
     }
 }
@@ -399,5 +408,5 @@ function formatModLine(mod: Mod, index: number, changelog: boolean): string {
 
     const installedCount = Intl.NumberFormat().format(mod.installedCount);
 
-    return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform}${changelog ? '' : ` ([mod page](https://mods.paradoxplaza.com/mods/${mod.modId}/${mod.os}))`} by *${mod.author}* — ⬇️ ${installedCount} installs`;
+    return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform}${changelog ? '' : ` ([mod page](https://mods.paradoxplaza.com/mods/${mod.modId}/${mod.os}))`} by *[${mod.author}](https://mods.paradoxplaza.com/authors/${encodeURIComponent(mod.author)})* — ⬇️ ${installedCount} installs`;
 }

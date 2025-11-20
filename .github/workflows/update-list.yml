@@ -1,0 +1,54 @@
+name: "Chore: Update list"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *' # every day at 03:00 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-list
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.1.26'
+          cache: true
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Discover mods
+        run: bun cli.ts discover --write
+
+      - name: Generate list
+        run: bun cli.ts list --write
+
+      - name: Type-check and format
+        run: bun run check
+
+      - name: Commit and push to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          CHANGED=$(git status --porcelain -- state "List of Mods Seeking Translators.md" | wc -l)
+          if [ "$CHANGED" -gt 0 ]; then
+            git add state "List of Mods Seeking Translators.md"
+            git commit -m "chore(state): list update"
+            git push origin HEAD:main
+          else
+            echo "No changes to commit."
+          fi
