@@ -51,7 +51,7 @@ void yargs(process.argv.slice(2))
         `Found ${chalk.bold.greenBright(translatableMods.length)} mods with translations.\n\n`
       );
 
-      if (!args.write && (await fsExists(oldStateFilePath))) {
+      if (!args.write && (await fs.exists(oldStateFilePath))) {
         const oldMods: Mod[] = JSON.parse(await fs.readFile(stateFilePath, 'utf8'));
 
         const newIds = new Set(translatableMods.map(mod => mod.modId));
@@ -71,7 +71,7 @@ void yargs(process.argv.slice(2))
         }
       }
 
-      if (await fsExists(oldStateFilePath)) {
+      if (await fs.exists(oldStateFilePath)) {
         process.stdout.write(`Moving ${stateFilePath} to ${oldStateFilePath}...\n`);
 
         await fs.rename(stateFilePath, oldStateFilePath);
@@ -98,7 +98,7 @@ void yargs(process.argv.slice(2))
         default: false
       }),
     async handler(args) {
-      if (await fsExists(stateFilePath)) {
+      if (!(await fs.exists(stateFilePath))) {
         throw new Error(`File not found: ${stateFilePath}. Run "discover" command first.`);
       }
 
@@ -117,7 +117,7 @@ void yargs(process.argv.slice(2))
           config.listMarkdownTemplateFilePath
         );
 
-        if (await fsExists(listTemplateFilePath)) {
+        if (await fs.exists(listTemplateFilePath)) {
           template = await fs.readFile(listTemplateFilePath, 'utf8');
         } else {
           process.stderr.write(
@@ -146,11 +146,11 @@ void yargs(process.argv.slice(2))
     describe: `Generate a markdown changelog of mods with translation links from output/state.json.`,
     async handler() {
       let oldMods: Mod[] = [];
-      if (await fsExists(oldStateFilePath)) {
+      if (await fs.exists(oldStateFilePath)) {
         oldMods = JSON.parse(await fs.readFile(oldStateFilePath, 'utf8'));
       }
 
-      if (await fsExists(stateFilePath)) {
+      if (!(await fs.exists(stateFilePath))) {
         throw new Error(`File not found: ${stateFilePath}. Run "discover" command first.`);
       }
 
@@ -209,9 +209,13 @@ void yargs(process.argv.slice(2))
 
 interface ListingMod {
   readonly modId: string;
+
   readonly displayName: string;
+
   readonly author: string;
+
   readonly os: string;
+
   readonly installedCount: number;
 }
 
@@ -359,11 +363,4 @@ function formatModLine(mod: Mod, index: number, changelog: boolean): string {
   } by *[${mod.author}](https://mods.paradoxplaza.com/authors/${encodeURIComponent(
     mod.author
   )})* — ⬇️ ${installedCount} installs`;
-}
-
-function fsExists(path: string): Promise<boolean> {
-  return fs.access(path).then(
-    () => true,
-    () => false
-  );
 }
