@@ -15,7 +15,7 @@ const stateDir = path.join(import.meta.dir, 'state');
 const oldStateFilePath = path.join(stateDir, 'previous-state.json');
 const stateFilePath = path.join(stateDir, 'state.json');
 
-yargs(process.argv.slice(2))
+void yargs(process.argv.slice(2))
   .scriptName(import.meta.file)
   .usage('$0 <cmd> [args]')
   .help()
@@ -62,14 +62,16 @@ yargs(process.argv.slice(2))
 
         if (!hasChanges) {
           process.stdout.write(
-            `${chalk.bold(`No new/updated/deleted mods detected.`)} Re-run the command using --write to force state files update.\n`
+            `${chalk.bold(
+              `No new/updated/deleted mods detected.`
+            )} Re-run the command using --write to force state files update.\n`
           );
 
           return;
         }
       }
 
-      if (await fs.exists(stateFilePath)) {
+      if (await fs.exists(oldStateFilePath)) {
         process.stdout.write(`Moving ${stateFilePath} to ${oldStateFilePath}...\n`);
 
         await fs.rename(stateFilePath, oldStateFilePath);
@@ -80,7 +82,9 @@ yargs(process.argv.slice(2))
       await fs.writeFile(stateFilePath, `${JSON.stringify(translatableMods, null, 2)}\n`);
 
       process.stdout.write(
-        `\nRun ${chalk.bold('list')} or ${chalk.bold('changelog')} subcommands for generating summaries.\n`
+        `\nRun ${chalk.bold('list')} or ${chalk.bold(
+          'changelog'
+        )} subcommands for generating summaries.\n`
       );
     }
   })
@@ -205,9 +209,13 @@ yargs(process.argv.slice(2))
 
 interface ListingMod {
   readonly modId: string;
+
   readonly displayName: string;
+
   readonly author: string;
+
   readonly os: string;
+
   readonly installedCount: number;
 }
 
@@ -250,6 +258,7 @@ async function listMods(gameName: string, tags: readonly string[]): Promise<read
 
     interface Body {
       readonly totalCount: number;
+
       readonly mods: readonly ListingMod[];
     }
 
@@ -321,6 +330,7 @@ async function getModsDetails(listingMods: readonly ListingMod[]): Promise<reado
 async function parseApiResponse<Body>(response: Response): Promise<Body> {
   interface BodyResponse {
     readonly result: 'OK' | 'Failure';
+
     readonly errorMessage?: string;
   }
 
@@ -348,5 +358,9 @@ function formatModLine(mod: Mod, index: number, changelog: boolean): string {
 
   const installedCount = Intl.NumberFormat().format(mod.installedCount);
 
-  return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform}${changelog ? '' : ` ([mod page](https://mods.paradoxplaza.com/mods/${mod.modId}/${mod.os}))`} by *[${mod.author}](https://mods.paradoxplaza.com/authors/${encodeURIComponent(mod.author)})* — ⬇️ ${installedCount} installs`;
+  return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform}${
+    changelog ? '' : ` ([mod page](https://mods.paradoxplaza.com/mods/${mod.modId}/${mod.os}))`
+  } by *[${mod.author}](https://mods.paradoxplaza.com/authors/${encodeURIComponent(
+    mod.author
+  )})* — ⬇️ ${installedCount} installs`;
 }

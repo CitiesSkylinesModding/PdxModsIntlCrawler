@@ -1,11 +1,13 @@
 [tools]
-bun = "latest"
+bun = "1.3.5"
 
 [tasks."deps:upgrade"]
 description = "Upgrades mise-en-place, proposes upgrades for tools managed by mise, and proposes upgrades for package.json dependencies."
 run = [
   "mise self-update",
   "mise up --interactive --bump",
+  # update bun-version in github workflow
+  "sed -i \"s/bun-version: '.*'/bun-version: '$(mise current bun)'/\" .github/workflows/update-list.yml",
   # using `mise exec bun` makes sure bun is found if a bun upgrade was just made
   "mise exec bun -- bun update --interactive",
   # make sure transitive dependencies are updated & deduplicated
