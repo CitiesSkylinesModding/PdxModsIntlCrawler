@@ -15,7 +15,7 @@ const stateDir = path.join(import.meta.dir, 'state');
 const oldStateFilePath = path.join(stateDir, 'previous-state.json');
 const stateFilePath = path.join(stateDir, 'state.json');
 
-yargs(process.argv.slice(2))
+void yargs(process.argv.slice(2))
   .scriptName(import.meta.file)
   .usage('$0 <cmd> [args]')
   .help()
@@ -51,13 +51,7 @@ yargs(process.argv.slice(2))
         `Found ${chalk.bold.greenBright(translatableMods.length)} mods with translations.\n\n`
       );
 
-      if (
-        !args.write &&
-        (await fs.access(oldStateFilePath).then(
-          () => true,
-          () => false
-        ))
-      ) {
+      if (!args.write && (await fsExists(oldStateFilePath))) {
         const oldMods: Mod[] = JSON.parse(await fs.readFile(stateFilePath, 'utf8'));
 
         const newIds = new Set(translatableMods.map(mod => mod.modId));
@@ -77,12 +71,7 @@ yargs(process.argv.slice(2))
         }
       }
 
-      if (
-        await fs.access(stateFilePath).then(
-          () => true,
-          () => false
-        )
-      ) {
+      if (await fsExists(oldStateFilePath)) {
         process.stdout.write(`Moving ${stateFilePath} to ${oldStateFilePath}...\n`);
 
         await fs.rename(stateFilePath, oldStateFilePath);
@@ -109,12 +98,7 @@ yargs(process.argv.slice(2))
         default: false
       }),
     async handler(args) {
-      if (
-        !(await fs.access(stateFilePath).then(
-          () => true,
-          () => false
-        ))
-      ) {
+      if (await fsExists(stateFilePath)) {
         throw new Error(`File not found: ${stateFilePath}. Run "discover" command first.`);
       }
 
@@ -133,12 +117,7 @@ yargs(process.argv.slice(2))
           config.listMarkdownTemplateFilePath
         );
 
-        if (
-          await fs.access(listTemplateFilePath).then(
-            () => true,
-            () => false
-          )
-        ) {
+        if (await fsExists(listTemplateFilePath)) {
           template = await fs.readFile(listTemplateFilePath, 'utf8');
         } else {
           process.stderr.write(
@@ -167,21 +146,11 @@ yargs(process.argv.slice(2))
     describe: `Generate a markdown changelog of mods with translation links from output/state.json.`,
     async handler() {
       let oldMods: Mod[] = [];
-      if (
-        await fs.access(oldStateFilePath).then(
-          () => true,
-          () => false
-        )
-      ) {
+      if (await fsExists(oldStateFilePath)) {
         oldMods = JSON.parse(await fs.readFile(oldStateFilePath, 'utf8'));
       }
 
-      if (
-        !(await fs.access(stateFilePath).then(
-          () => true,
-          () => false
-        ))
-      ) {
+      if (await fsExists(stateFilePath)) {
         throw new Error(`File not found: ${stateFilePath}. Run "discover" command first.`);
       }
 
@@ -285,6 +254,7 @@ async function listMods(gameName: string, tags: readonly string[]): Promise<read
 
     interface Body {
       readonly totalCount: number;
+
       readonly mods: readonly ListingMod[];
     }
 
@@ -356,6 +326,7 @@ async function getModsDetails(listingMods: readonly ListingMod[]): Promise<reado
 async function parseApiResponse<Body>(response: Response): Promise<Body> {
   interface BodyResponse {
     readonly result: 'OK' | 'Failure';
+
     readonly errorMessage?: string;
   }
 
@@ -388,4 +359,11 @@ function formatModLine(mod: Mod, index: number, changelog: boolean): string {
   } by *[${mod.author}](https://mods.paradoxplaza.com/authors/${encodeURIComponent(
     mod.author
   )})* — ⬇️ ${installedCount} installs`;
+}
+
+function fsExists(path: string): Promise<boolean> {
+  return fs.access(path).then(
+    () => true,
+    () => false
+  );
 }
