@@ -4,7 +4,7 @@
     "displayName": "Move It",
     "author": "yenyang",
     "os": "Windows",
-    "installedCount": 837092,
+    "installedCount": 838396,
     "translationLink": "https://crowdin.com/project/csl2-mod-move-it"
   },
   {
@@ -12,7 +12,7 @@
     "displayName": "529 Tiles",
     "author": "algernon",
     "os": "Windows",
-    "installedCount": 395174,
+    "installedCount": 395636,
     "translationLink": "https://crowdin.com/project/592-tiles"
   },
   {
@@ -20,7 +20,7 @@
     "displayName": "Historical Start",
     "author": "algernon",
     "os": "Windows",
-    "installedCount": 19035,
+    "installedCount": 19038,
     "translationLink": "https://crowdin.com/project/historical-start-cs2"
   },
   {
@@ -28,7 +28,7 @@
     "displayName": "Image Overlay",
     "author": "algernon",
     "os": "Windows",
-    "installedCount": 32673,
+    "installedCount": 32699,
     "translationLink": "https://crowdin.com/project/image-overlay"
   },
   {
@@ -36,7 +36,7 @@
     "displayName": "Anarchy",
     "author": "yenyang",
     "os": "Windows",
-    "installedCount": 897728,
+    "installedCount": 898979,
     "translationLink": "https://crowdin.com/project/csl2-mod-anarchy"
   },
   {
@@ -44,7 +44,7 @@
     "displayName": "Better Bulldozer",
     "author": "yenyang",
     "os": "Windows",
-    "installedCount": 683838,
+    "installedCount": 684732,
     "translationLink": "https://crowdin.com/project/cs2-mods-better-bulldozer"
   },
   {
@@ -52,7 +52,7 @@
     "displayName": "Water Features",
     "author": "yenyang",
     "os": "Windows",
-    "installedCount": 378540,
+    "installedCount": 378962,
     "translationLink": "https://crowdin.com/project/csl2-mod-tree-controller"
   },
   {
@@ -60,7 +60,7 @@
     "displayName": "ExtraLib",
     "author": "Triton Supreme",
     "os": "Windows",
-    "installedCount": 735944,
+    "installedCount": 736722,
     "translationLink": "https://crowdin.com/project/extralib"
   },
   {
@@ -68,7 +68,7 @@
     "displayName": "ExtraLandscapingTools",
     "author": "Triton Supreme",
     "os": "Windows",
-    "installedCount": 404374,
+    "installedCount": 404857,
     "translationLink": "https://crowdin.com/project/extralandscapingtools"
   },
   {
@@ -76,7 +76,7 @@
     "displayName": "Skyve",
     "author": "TDW",
     "os": "Windows",
-    "installedCount": 239609,
+    "installedCount": 240106,
     "translationLink": "https://crowdin.com/project/load-order-mod-2"
   },
   {
@@ -84,7 +84,7 @@
     "displayName": "Advanced Line Tool",
     "author": "algernon",
     "os": "Windows",
-    "installedCount": 452018,
+    "installedCount": 452469,
     "translationLink": "https://crowdin.com/project/line-tool-cs2"
   },
   {
@@ -92,7 +92,7 @@
     "displayName": "Plop the Growables",
     "author": "algernon",
     "os": "Windows",
-    "installedCount": 349103,
+    "installedCount": 349569,
     "translationLink": "https://crowdin.com/project/plop-the-growables"
   },
   {
@@ -100,7 +100,7 @@
     "displayName": "ExtendedRadio",
     "author": "Triton Supreme",
     "os": "Windows",
-    "installedCount": 58124,
+    "installedCount": 58137,
     "translationLink": "https://crowdin.com/project/extendedradio"
   },
   {
@@ -108,7 +108,7 @@
     "displayName": "Tree Controller",
     "author": "yenyang",
     "os": "Windows",
-    "installedCount": 286531,
+    "installedCount": 286718,
     "translationLink": "https://crowdin.com/project/csl2-mod-water-features"
   },
   {
@@ -116,7 +116,7 @@
     "displayName": "Find It",
     "author": "TDW",
     "os": "Windows",
-    "installedCount": 591855,
+    "installedCount": 592747,
     "translationLink": "https://crowdin.com/project/find-it-csii"
   },
   {
@@ -124,7 +124,7 @@
     "displayName": "Traffic Lights Enhancement Alpha",
     "author": "C2VMTLE",
     "os": "Windows",
-    "installedCount": 204620,
+    "installedCount": 204428,
     "translationLink": "https://crowdin.com/project/Cities2-TrafficLightsEnhancement"
   },
   {
@@ -132,7 +132,7 @@
     "displayName": "First Person Camera Continued",
     "author": "Cgameworld",
     "os": "Windows",
-    "installedCount": 197981,
+    "installedCount": 198292,
     "translationLink": "https://crowdin.com/project/cs2-first-person-camera-continued"
   },
   {
@@ -148,7 +148,7 @@
     "displayName": "AdvancedSimulationSpeed",
     "author": "zakuro9715",
     "os": "Windows",
-    "installedCount": 37044,
+    "installedCount": 37057,
     "translationLink": "https://crowdin.com/project/cs2-advancedsimulationspeed"
   },
   {
@@ -156,7 +156,7 @@
     "displayName": "Traffic",
     "author": "krzychu124",
     "os": "Windows",
-    "installedCount": 845627,
+    "installedCount": 846921,
     "translationLink": "https://crowdin.com/project/traffic-cs2"
   },
   {
@@ -164,7 +164,7 @@
     "displayName": "ExtraDetailingTools",
     "author": "Triton Supreme",
     "os": "Windows",
-    "installedCount": 404661,
+    "installedCount": 405103,
     "translationLink": "https://crowdin.com/project/extradetailingtools"
   },
   {
@@ -172,7 +172,7 @@
     "displayName": "ExtraAssetsImporter",
     "author": "Triton Supreme",
     "os": "Windows",
-    "installedCount": 473444,
+    "installedCount": 473897,
     "translationLink": "https://crowdin.com/project/extraassetsimporter"
   },
   {
@@ -188,7 +188,7 @@
     "displayName": "Recolor",
     "author": "yenyang",
     "os": "Windows",
-    "installedCount": 186886,
+    "installedCount": 186959,
     "translationLink": "https://crowdin.com/project/csl2-mod-recolor"
   },
   {
@@ -196,7 +196,7 @@
     "displayName": "City Stats",
     "author": "kendallroth",
     "os": "Windows",
-    "installedCount": 22550,
+    "installedCount": 22633,
     "translationLink": "https://crowdin.com/project/cs2-city-stats"
   },
   {
@@ -204,7 +204,7 @@
     "displayName": "Trading Cost Tweaker",
     "author": "StarQ",
     "os": "Windows",
-    "installedCount": 2089,
+    "installedCount": 2087,
     "translationLink": "https://crowdin.com/project/cities2-mods"
   },
   {
@@ -212,7 +212,7 @@
     "displayName": "Compass",
     "author": "Cgameworld",
     "os": "Windows",
-    "installedCount": 4265,
+    "installedCount": 4269,
     "translationLink": "https://crowdin.com/project/cs2-compass-mod"
   },
   {
@@ -220,7 +220,7 @@
     "displayName": "Road Builder [BETA]",
     "author": "TDW",
     "os": "Windows",
-    "installedCount": 469784,
+    "installedCount": 470715,
     "translationLink": "https://crowdin.com/project/road-builder-cs-ii"
   },
   {
@@ -228,7 +228,7 @@
     "displayName": "Carto",
     "author": "Taipei Native",
     "os": "Windows",
-    "installedCount": 10692,
+    "installedCount": 10723,
     "translationLink": "https://crowdin.com/project/carto"
   },
   {
@@ -236,7 +236,7 @@
     "displayName": "ON1 Portrait LUT Pack",
     "author": "Nyyoko",
     "os": "Windows",
-    "installedCount": 3987,
+    "installedCount": 3983,
     "translationLink": "https://crowdin.com/project/lumina"
   },
   {
@@ -244,7 +244,7 @@
     "displayName": "PolyHaven Cubemap Pack Pure Sky",
     "author": "Nyyoko",
     "os": "Windows",
-    "installedCount": 2499,
+    "installedCount": 2500,
     "translationLink": "https://crowdin.com/project/lumina"
   },
   {
@@ -252,7 +252,7 @@
     "displayName": "City Controller",
     "author": "Mbyron26",
     "os": "Windows",
-    "installedCount": 26897,
+    "installedCount": 26878,
     "translationLink": "https://crowdin.com/project/city-controller"
   },
   {
@@ -260,7 +260,7 @@
     "displayName": "Minecraft HDRI Sky",
     "author": "Nyyoko",
     "os": "Windows",
-    "installedCount": 189,
+    "installedCount": 188,
     "translationLink": "https://crowdin.com/project/lumina"
   },
   {
@@ -268,7 +268,7 @@
     "displayName": "[UNSTABLE] TLE 0.3 Preview",
     "author": "C2VMTLE",
     "os": "Windows",
-    "installedCount": 1298,
+    "installedCount": 1297,
     "translationLink": "https://crowdin.com/project/Cities2-TrafficLightsEnhancement"
   },
   {
@@ -276,7 +276,7 @@
     "displayName": "Hall of Fame",
     "author": "toverux",
     "os": "Windows",
-    "installedCount": 8176,
+    "installedCount": 8182,
     "translationLink": "https://crowdin.com/project/halloffame-cs2"
   },
   {
@@ -284,7 +284,7 @@
     "displayName": "InfoLoom",
     "author": "Bruceyboy24804",
     "os": "Windows",
-    "installedCount": 42567,
+    "installedCount": 42578,
     "translationLink": "https://crowdin.com/project/info-loom"
   },
   {
@@ -292,7 +292,7 @@
     "displayName": "StarQ's Workflow Kit",
     "author": "StarQ",
     "os": "Windows",
-    "installedCount": 1302,
+    "installedCount": 1298,
     "translationLink": "https://crowdin.com/project/cities2-mods"
   },
   {
@@ -300,7 +300,7 @@
     "displayName": "Lumina",
     "author": "Nyyoko",
     "os": "Windows",
-    "installedCount": 56714,
+    "installedCount": 56812,
     "translationLink": "https://crowdin.com/project/lumina"
   },
   {
@@ -308,7 +308,7 @@
     "displayName": "Asset UI Manager",
     "author": "StarQ",
     "os": "Windows",
-    "installedCount": 40639,
+    "installedCount": 40791,
     "translationLink": "https://crowdin.com/project/cities2-mods"
   },
   {
@@ -316,7 +316,7 @@
     "displayName": "Zoning By-Law Builder [Beta]",
     "author": "Trejak",
     "os": "Windows",
-    "installedCount": 4272,
+    "installedCount": 4270,
     "translationLink": "https://crowdin.com/project/zoning-by-law-builder-cs2"
   },
   {
@@ -324,7 +324,7 @@
     "displayName": "Advanced Road Tools",
     "author": "Kemorno",
     "os": "Windows",
-    "installedCount": 51622,
+    "installedCount": 51556,
     "translationLink": "https://crowdin.com/project/advancedroadtools"
   },
   {
@@ -332,7 +332,7 @@
     "displayName": "System Clock",
     "author": "ssharp0",
     "os": "Windows",
-    "installedCount": 1037,
+    "installedCount": 1036,
     "translationLink": "https://crowdin.com/project/cites-skyline2-system-clock-mod"
   },
   {
@@ -340,7 +340,7 @@
     "displayName": "Skyve [BETA]",
     "author": "TDW",
     "os": "Windows",
-    "installedCount": 23382,
+    "installedCount": 23493,
     "translationLink": "https://crowdin.com/project/load-order-mod-2"
   },
   {
@@ -348,7 +348,7 @@
     "displayName": "Advanced Building Control",
     "author": "StarQ",
     "os": "Windows",
-    "installedCount": 3687,
+    "installedCount": 3748,
     "translationLink": "https://crowdin.com/project/starq-cities2"
   },
   {
@@ -356,7 +356,7 @@
     "displayName": "Lumina [Experimental]",
     "author": "Nyyoko",
     "os": "Windows",
-    "installedCount": 482,
+    "installedCount": 483,
     "translationLink": "https://crowdin.com/project/lumina"
   },
   {
@@ -364,7 +364,7 @@
     "displayName": "Prefab Asset Fixes",
     "author": "StarQ",
     "os": "Windows",
-    "installedCount": 11560,
+    "installedCount": 11622,
     "translationLink": "https://crowdin.com/project/starq-cities2"
   },
   {
@@ -372,7 +372,7 @@
     "displayName": "Platter [Alpha]",
     "author": "LucaDevDesign",
     "os": "Windows",
-    "installedCount": 69896,
+    "installedCount": 70314,
     "translationLink": "https://crowdin.com/project/platter-cs2"
   },
   {
@@ -380,7 +380,7 @@
     "displayName": "Asset Migration Utility",
     "author": "StarQ",
     "os": "Windows",
-    "installedCount": 5362,
+    "installedCount": 5381,
     "translationLink": "https://crowdin.com/project/starq-cities2"
   },
   {
@@ -388,7 +388,7 @@
     "displayName": "Traffic Lights Enhancement",
     "author": "Bruceyboy24804",
     "os": "Windows",
-    "installedCount": 40805,
+    "installedCount": 40937,
     "translationLink": "https://crowdin.com/project/Cities2-TrafficLightsEnhancement"
   },
   {
@@ -396,7 +396,7 @@
     "displayName": "Topo Toggle",
     "author": "yenyang",
     "os": "Windows",
-    "installedCount": 11661,
+    "installedCount": 11737,
     "translationLink": "https://crowdin.com/project/csl2-mod-topo-toggle"
   },
   {
@@ -404,7 +404,7 @@
     "displayName": "Clearance Helper",
     "author": "LucaDevDesign",
     "os": "Windows",
-    "installedCount": 999,
+    "installedCount": 1006,
     "translationLink": "https://crowdin.com/project/clearance-cs2"
   },
   {
@@ -412,7 +412,7 @@
     "displayName": "Luca's Debug Utils [Mod Developer Tool]",
     "author": "LucaDevDesign",
     "os": "Windows",
-    "installedCount": 64,
+    "installedCount": 66,
     "translationLink": "https://crowdin.com/project/DebugUtils-cs2"
   },
   {
@@ -420,7 +420,7 @@
     "displayName": "[BETA] Traffic Law Enforcement",
     "author": "Pectus Solentis",
     "os": "Windows",
-    "installedCount": 2974,
+    "installedCount": 3731,
     "translationLink": "https://crowdin.com/project/csl2"
   }
 ]
