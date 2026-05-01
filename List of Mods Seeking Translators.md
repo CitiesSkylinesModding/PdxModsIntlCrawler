@@ -1,6 +1,6 @@
 # List of Mods Seeking Translators
 
-This list was automatically generated on 4/30/2026, 5:49:53 AM, listing mods that specified a link to a
+This list was automatically generated on 5/1/2026, 5:59:44 AM, listing mods that specified a link to a
 translation project in their description or external links section.
 
 [Crowdin](https://crowdin.com) and other common platforms are supported, however a few mod authors
@@ -10,60 +10,60 @@ still use only GitHub PRs only to manage their translations and those are not li
 
 Ordered by installation count, descending order:
 
-1. [Anarchy](https://crowdin.com/project/csl2-mod-anarchy) ([mod page](https://mods.paradoxplaza.com/mods/74604/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 935,827 installs
-2. [Traffic](https://crowdin.com/project/traffic-cs2) ([mod page](https://mods.paradoxplaza.com/mods/80095/Windows)) by *[krzychu124](https://mods.paradoxplaza.com/authors/krzychu124)* — ⬇️ 890,177 installs
-3. [Move It](https://crowdin.com/project/csl2-mod-move-it) ([mod page](https://mods.paradoxplaza.com/mods/74324/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 875,364 installs
-4. [ExtraLib](https://crowdin.com/project/extralib) ([mod page](https://mods.paradoxplaza.com/mods/75724/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 760,222 installs
-5. [Better Bulldozer](https://crowdin.com/project/cs2-mods-better-bulldozer) ([mod page](https://mods.paradoxplaza.com/mods/75250/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 712,057 installs
-6. [Find It](https://crowdin.com/project/find-it-csii) ([mod page](https://mods.paradoxplaza.com/mods/77240/Windows)) by *[TDW](https://mods.paradoxplaza.com/authors/TDW)* — ⬇️ 619,135 installs
-7. [Road Builder [BETA]](https://crowdin.com/project/road-builder-cs-ii) ([mod page](https://mods.paradoxplaza.com/mods/87190/Windows)) by *[TDW](https://mods.paradoxplaza.com/authors/TDW)* — ⬇️ 495,933 installs
-8. [ExtraAssetsImporter](https://crowdin.com/project/extraassetsimporter) ([mod page](https://mods.paradoxplaza.com/mods/80529/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 489,340 installs
-9. [Advanced Line Tool](https://crowdin.com/project/line-tool-cs2) ([mod page](https://mods.paradoxplaza.com/mods/75816/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 464,779 installs
-10. [ExtraLandscapingTools](https://crowdin.com/project/extralandscapingtools) ([mod page](https://mods.paradoxplaza.com/mods/75728/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 420,385 installs
-11. [ExtraDetailingTools](https://crowdin.com/project/extradetailingtools) ([mod page](https://mods.paradoxplaza.com/mods/80528/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 419,922 installs
-12. [529 Tiles](https://crowdin.com/project/592-tiles) ([mod page](https://mods.paradoxplaza.com/mods/74328/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 408,634 installs
-13. [Water Features](https://crowdin.com/project/csl2-mod-tree-controller) ([mod page](https://mods.paradoxplaza.com/mods/75613/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 393,022 installs
-14. [Plop the Growables](https://crowdin.com/project/plop-the-growables) ([mod page](https://mods.paradoxplaza.com/mods/75826/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 365,381 installs
-15. [Tree Controller](https://crowdin.com/project/csl2-mod-water-features) ([mod page](https://mods.paradoxplaza.com/mods/75993/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 293,792 installs
-16. [Skyve](https://crowdin.com/project/load-order-mod-2) ([mod page](https://mods.paradoxplaza.com/mods/75804/Windows)) by *[TDW](https://mods.paradoxplaza.com/authors/TDW)* — ⬇️ 255,630 installs
-17. [First Person Camera Continued](https://crowdin.com/project/cs2-first-person-camera-continued) ([mod page](https://mods.paradoxplaza.com/mods/79237/Windows)) by *[Cgameworld](https://mods.paradoxplaza.com/authors/Cgameworld)* — ⬇️ 208,780 installs
-18. [Traffic Lights Enhancement Alpha](https://crowdin.com/project/Cities2-TrafficLightsEnhancement) ([mod page](https://mods.paradoxplaza.com/mods/78960/Windows)) by *[C2VMTLE](https://mods.paradoxplaza.com/authors/C2VMTLE)* — ⬇️ 197,434 installs
-19. [Recolor](https://crowdin.com/project/csl2-mod-recolor) ([mod page](https://mods.paradoxplaza.com/mods/84638/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 189,889 installs
-20. [Platter [Beta]](https://crowdin.com/project/platter-cs2) ([mod page](https://mods.paradoxplaza.com/mods/125278/Windows)) by *[LucaDevDesign](https://mods.paradoxplaza.com/authors/LucaDevDesign)* — ⬇️ 83,021 installs
-21. [Lumina](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/94394/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 59,869 installs
-22. [ExtendedRadio](https://crowdin.com/project/extendedradio) ([mod page](https://mods.paradoxplaza.com/mods/75862/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 59,647 installs
-23. [Traffic Lights Enhancement](https://crowdin.com/project/Cities2-TrafficLightsEnhancement) ([mod page](https://mods.paradoxplaza.com/mods/128911/Windows)) by *[Bruceyboy24804](https://mods.paradoxplaza.com/authors/Bruceyboy24804)* — ⬇️ 50,506 installs
-24. [Advanced Road Tools](https://crowdin.com/project/advancedroadtools) ([mod page](https://mods.paradoxplaza.com/mods/102147/Windows)) by *[Kemorno](https://mods.paradoxplaza.com/authors/Kemorno)* — ⬇️ 49,739 installs
-25. [InfoLoom](https://crowdin.com/project/info-loom) ([mod page](https://mods.paradoxplaza.com/mods/91433/Windows)) by *[Bruceyboy24804](https://mods.paradoxplaza.com/authors/Bruceyboy24804)* — ⬇️ 45,035 installs
-26. [Asset UI Manager](https://crowdin.com/project/cities2-mods) ([mod page](https://mods.paradoxplaza.com/mods/98560/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 44,478 installs
-27. [AdvancedSimulationSpeed](https://crowdin.com/project/cs2-advancedsimulationspeed) ([mod page](https://mods.paradoxplaza.com/mods/79794/Windows)) by *[zakuro9715](https://mods.paradoxplaza.com/authors/zakuro9715)* — ⬇️ 36,989 installs
-28. [Image Overlay](https://crowdin.com/project/image-overlay) ([mod page](https://mods.paradoxplaza.com/mods/74539/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 33,948 installs
-29. [City Controller](https://crowdin.com/project/city-controller) ([mod page](https://mods.paradoxplaza.com/mods/89495/Windows)) by *[Mbyron26](https://mods.paradoxplaza.com/authors/Mbyron26)* — ⬇️ 26,801 installs
-30. [Skyve [BETA]](https://crowdin.com/project/load-order-mod-2) ([mod page](https://mods.paradoxplaza.com/mods/108773/Windows)) by *[TDW](https://mods.paradoxplaza.com/authors/TDW)* — ⬇️ 26,342 installs
-31. [City Stats](https://crowdin.com/project/cs2-city-stats) ([mod page](https://mods.paradoxplaza.com/mods/85284/Windows)) by *[kendallroth](https://mods.paradoxplaza.com/authors/kendallroth)* — ⬇️ 24,998 installs
-32. [Node Controller](https://crowdin.com/project/node-controller-cs2) ([mod page](https://mods.paradoxplaza.com/mods/138523/Windows)) by *[Bruceyboy24804](https://mods.paradoxplaza.com/authors/Bruceyboy24804)* — ⬇️ 20,669 installs
-33. [Historical Start](https://crowdin.com/project/historical-start-cs2) ([mod page](https://mods.paradoxplaza.com/mods/74535/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 19,170 installs
-34. [Topo Toggle](https://crowdin.com/project/csl2-mod-topo-toggle) ([mod page](https://mods.paradoxplaza.com/mods/129789/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 14,447 installs
-35. [Prefab Asset Fixes](https://crowdin.com/project/starq-cities2) ([mod page](https://mods.paradoxplaza.com/mods/113708/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 13,848 installs
-36. [Carto](https://crowdin.com/project/carto) ([mod page](https://mods.paradoxplaza.com/mods/87428/Windows)) by *[Taipei Native](https://mods.paradoxplaza.com/authors/Taipei%20Native)* — ⬇️ 11,368 installs
-37. [[BETA] Traffic Law Enforcement](https://crowdin.com/project/csl2) ([mod page](https://mods.paradoxplaza.com/mods/138258/Windows)) by *[Pectus Solentis](https://mods.paradoxplaza.com/authors/Pectus%20Solentis)* — ⬇️ 9,737 installs
-38. [Hall of Fame](https://crowdin.com/project/halloffame-cs2) ([mod page](https://mods.paradoxplaza.com/mods/90641/Windows)) by *[toverux](https://mods.paradoxplaza.com/authors/toverux)* — ⬇️ 8,447 installs
-39. [Asset Migration Utility](https://crowdin.com/project/starq-cities2) ([mod page](https://mods.paradoxplaza.com/mods/127507/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 6,851 installs
-40. [Advanced Building Control](https://crowdin.com/project/starq-cities2) ([mod page](https://mods.paradoxplaza.com/mods/112283/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 5,579 installs
-41. [Compass](https://crowdin.com/project/cs2-compass-mod) ([mod page](https://mods.paradoxplaza.com/mods/86260/Windows)) by *[Cgameworld](https://mods.paradoxplaza.com/authors/Cgameworld)* — ⬇️ 4,483 installs
-42. [Zoning By-Law Builder [Beta]](https://crowdin.com/project/zoning-by-law-builder-cs2) ([mod page](https://mods.paradoxplaza.com/mods/101251/Windows)) by *[Trejak](https://mods.paradoxplaza.com/authors/Trejak)* — ⬇️ 4,232 installs
-43. [ON1 Portrait LUT Pack](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/88524/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 4,034 installs
-44. [PolyHaven Cubemap Pack Pure Sky](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/88863/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 2,508 installs
-45. [Trading Cost Tweaker](https://crowdin.com/project/cities2-mods) ([mod page](https://mods.paradoxplaza.com/mods/86124/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 2,130 installs
-46. [SettingsManager](https://crowdin.com/project/cs2-settingsmanager) ([mod page](https://mods.paradoxplaza.com/mods/81578/Windows)) by *[zakuro9715](https://mods.paradoxplaza.com/authors/zakuro9715)* — ⬇️ 1,490 installs
-47. [StarQ's Workflow Kit](https://crowdin.com/project/cities2-mods) ([mod page](https://mods.paradoxplaza.com/mods/92671/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 1,286 installs
-48. [[UNSTABLE] TLE 0.3 Preview](https://crowdin.com/project/Cities2-TrafficLightsEnhancement) ([mod page](https://mods.paradoxplaza.com/mods/89804/Windows)) by *[C2VMTLE](https://mods.paradoxplaza.com/authors/C2VMTLE)* — ⬇️ 1,189 installs
-49. [Clearance Helper](https://crowdin.com/project/clearance-cs2) ([mod page](https://mods.paradoxplaza.com/mods/132866/Windows)) by *[LucaDevDesign](https://mods.paradoxplaza.com/authors/LucaDevDesign)* — ⬇️ 1,187 installs
-50. [System Clock](https://crowdin.com/project/cites-skyline2-system-clock-mod) ([mod page](https://mods.paradoxplaza.com/mods/107257/Windows)) by *[ssharp0](https://mods.paradoxplaza.com/authors/ssharp0)* — ⬇️ 1,009 installs
-51. [Lumina [Experimental]](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/113470/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 488 installs
+1. [Anarchy](https://crowdin.com/project/csl2-mod-anarchy) ([mod page](https://mods.paradoxplaza.com/mods/74604/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 936,893 installs
+2. [Traffic](https://crowdin.com/project/traffic-cs2) ([mod page](https://mods.paradoxplaza.com/mods/80095/Windows)) by *[krzychu124](https://mods.paradoxplaza.com/authors/krzychu124)* — ⬇️ 891,518 installs
+3. [Move It](https://crowdin.com/project/csl2-mod-move-it) ([mod page](https://mods.paradoxplaza.com/mods/74324/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 876,475 installs
+4. [ExtraLib](https://crowdin.com/project/extralib) ([mod page](https://mods.paradoxplaza.com/mods/75724/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 760,818 installs
+5. [Better Bulldozer](https://crowdin.com/project/cs2-mods-better-bulldozer) ([mod page](https://mods.paradoxplaza.com/mods/75250/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 712,805 installs
+6. [Find It](https://crowdin.com/project/find-it-csii) ([mod page](https://mods.paradoxplaza.com/mods/77240/Windows)) by *[TDW](https://mods.paradoxplaza.com/authors/TDW)* — ⬇️ 619,792 installs
+7. [Road Builder [BETA]](https://crowdin.com/project/road-builder-cs-ii) ([mod page](https://mods.paradoxplaza.com/mods/87190/Windows)) by *[TDW](https://mods.paradoxplaza.com/authors/TDW)* — ⬇️ 496,451 installs
+8. [ExtraAssetsImporter](https://crowdin.com/project/extraassetsimporter) ([mod page](https://mods.paradoxplaza.com/mods/80529/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 489,656 installs
+9. [Advanced Line Tool](https://crowdin.com/project/line-tool-cs2) ([mod page](https://mods.paradoxplaza.com/mods/75816/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 465,124 installs
+10. [ExtraLandscapingTools](https://crowdin.com/project/extralandscapingtools) ([mod page](https://mods.paradoxplaza.com/mods/75728/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 420,850 installs
+11. [ExtraDetailingTools](https://crowdin.com/project/extradetailingtools) ([mod page](https://mods.paradoxplaza.com/mods/80528/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 420,300 installs
+12. [529 Tiles](https://crowdin.com/project/592-tiles) ([mod page](https://mods.paradoxplaza.com/mods/74328/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 408,949 installs
+13. [Water Features](https://crowdin.com/project/csl2-mod-tree-controller) ([mod page](https://mods.paradoxplaza.com/mods/75613/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 393,392 installs
+14. [Plop the Growables](https://crowdin.com/project/plop-the-growables) ([mod page](https://mods.paradoxplaza.com/mods/75826/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 365,644 installs
+15. [Tree Controller](https://crowdin.com/project/csl2-mod-water-features) ([mod page](https://mods.paradoxplaza.com/mods/75993/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 294,075 installs
+16. [Skyve](https://crowdin.com/project/load-order-mod-2) ([mod page](https://mods.paradoxplaza.com/mods/75804/Windows)) by *[TDW](https://mods.paradoxplaza.com/authors/TDW)* — ⬇️ 256,042 installs
+17. [First Person Camera Continued](https://crowdin.com/project/cs2-first-person-camera-continued) ([mod page](https://mods.paradoxplaza.com/mods/79237/Windows)) by *[Cgameworld](https://mods.paradoxplaza.com/authors/Cgameworld)* — ⬇️ 208,981 installs
+18. [Traffic Lights Enhancement Alpha](https://crowdin.com/project/Cities2-TrafficLightsEnhancement) ([mod page](https://mods.paradoxplaza.com/mods/78960/Windows)) by *[C2VMTLE](https://mods.paradoxplaza.com/authors/C2VMTLE)* — ⬇️ 197,112 installs
+19. [Recolor](https://crowdin.com/project/csl2-mod-recolor) ([mod page](https://mods.paradoxplaza.com/mods/84638/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 189,755 installs
+20. [Platter [Beta]](https://crowdin.com/project/platter-cs2) ([mod page](https://mods.paradoxplaza.com/mods/125278/Windows)) by *[LucaDevDesign](https://mods.paradoxplaza.com/authors/LucaDevDesign)* — ⬇️ 83,244 installs
+21. [Lumina](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/94394/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 59,789 installs
+22. [ExtendedRadio](https://crowdin.com/project/extendedradio) ([mod page](https://mods.paradoxplaza.com/mods/75862/Windows)) by *[Triton Supreme](https://mods.paradoxplaza.com/authors/Triton%20Supreme)* — ⬇️ 59,654 installs
+23. [Traffic Lights Enhancement](https://crowdin.com/project/Cities2-TrafficLightsEnhancement) ([mod page](https://mods.paradoxplaza.com/mods/128911/Windows)) by *[Bruceyboy24804](https://mods.paradoxplaza.com/authors/Bruceyboy24804)* — ⬇️ 50,777 installs
+24. [Advanced Road Tools](https://crowdin.com/project/advancedroadtools) ([mod page](https://mods.paradoxplaza.com/mods/102147/Windows)) by *[Kemorno](https://mods.paradoxplaza.com/authors/Kemorno)* — ⬇️ 49,622 installs
+25. [InfoLoom](https://crowdin.com/project/info-loom) ([mod page](https://mods.paradoxplaza.com/mods/91433/Windows)) by *[Bruceyboy24804](https://mods.paradoxplaza.com/authors/Bruceyboy24804)* — ⬇️ 45,069 installs
+26. [Asset UI Manager](https://crowdin.com/project/cities2-mods) ([mod page](https://mods.paradoxplaza.com/mods/98560/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 44,515 installs
+27. [AdvancedSimulationSpeed](https://crowdin.com/project/cs2-advancedsimulationspeed) ([mod page](https://mods.paradoxplaza.com/mods/79794/Windows)) by *[zakuro9715](https://mods.paradoxplaza.com/authors/zakuro9715)* — ⬇️ 36,925 installs
+28. [Image Overlay](https://crowdin.com/project/image-overlay) ([mod page](https://mods.paradoxplaza.com/mods/74539/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 33,943 installs
+29. [City Controller](https://crowdin.com/project/city-controller) ([mod page](https://mods.paradoxplaza.com/mods/89495/Windows)) by *[Mbyron26](https://mods.paradoxplaza.com/authors/Mbyron26)* — ⬇️ 26,769 installs
+30. [Skyve [BETA]](https://crowdin.com/project/load-order-mod-2) ([mod page](https://mods.paradoxplaza.com/mods/108773/Windows)) by *[TDW](https://mods.paradoxplaza.com/authors/TDW)* — ⬇️ 26,410 installs
+31. [City Stats](https://crowdin.com/project/cs2-city-stats) ([mod page](https://mods.paradoxplaza.com/mods/85284/Windows)) by *[kendallroth](https://mods.paradoxplaza.com/authors/kendallroth)* — ⬇️ 25,024 installs
+32. [Node Controller](https://crowdin.com/project/node-controller-cs2) ([mod page](https://mods.paradoxplaza.com/mods/138523/Windows)) by *[Bruceyboy24804](https://mods.paradoxplaza.com/authors/Bruceyboy24804)* — ⬇️ 21,017 installs
+33. [Historical Start](https://crowdin.com/project/historical-start-cs2) ([mod page](https://mods.paradoxplaza.com/mods/74535/Windows)) by *[algernon](https://mods.paradoxplaza.com/authors/algernon)* — ⬇️ 19,144 installs
+34. [Topo Toggle](https://crowdin.com/project/csl2-mod-topo-toggle) ([mod page](https://mods.paradoxplaza.com/mods/129789/Windows)) by *[yenyang](https://mods.paradoxplaza.com/authors/yenyang)* — ⬇️ 14,489 installs
+35. [Prefab Asset Fixes](https://crowdin.com/project/starq-cities2) ([mod page](https://mods.paradoxplaza.com/mods/113708/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 13,860 installs
+36. [Carto](https://crowdin.com/project/carto) ([mod page](https://mods.paradoxplaza.com/mods/87428/Windows)) by *[Taipei Native](https://mods.paradoxplaza.com/authors/Taipei%20Native)* — ⬇️ 11,359 installs
+37. [[BETA] Traffic Law Enforcement](https://crowdin.com/project/csl2) ([mod page](https://mods.paradoxplaza.com/mods/138258/Windows)) by *[Pectus Solentis](https://mods.paradoxplaza.com/authors/Pectus%20Solentis)* — ⬇️ 9,648 installs
+38. [Hall of Fame](https://crowdin.com/project/halloffame-cs2) ([mod page](https://mods.paradoxplaza.com/mods/90641/Windows)) by *[toverux](https://mods.paradoxplaza.com/authors/toverux)* — ⬇️ 8,467 installs
+39. [Asset Migration Utility](https://crowdin.com/project/starq-cities2) ([mod page](https://mods.paradoxplaza.com/mods/127507/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 6,887 installs
+40. [Advanced Building Control](https://crowdin.com/project/starq-cities2) ([mod page](https://mods.paradoxplaza.com/mods/112283/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 5,593 installs
+41. [Compass](https://crowdin.com/project/cs2-compass-mod) ([mod page](https://mods.paradoxplaza.com/mods/86260/Windows)) by *[Cgameworld](https://mods.paradoxplaza.com/authors/Cgameworld)* — ⬇️ 4,474 installs
+42. [Zoning By-Law Builder [Beta]](https://crowdin.com/project/zoning-by-law-builder-cs2) ([mod page](https://mods.paradoxplaza.com/mods/101251/Windows)) by *[Trejak](https://mods.paradoxplaza.com/authors/Trejak)* — ⬇️ 4,225 installs
+43. [ON1 Portrait LUT Pack](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/88524/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 4,022 installs
+44. [PolyHaven Cubemap Pack Pure Sky](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/88863/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 2,498 installs
+45. [Trading Cost Tweaker](https://crowdin.com/project/cities2-mods) ([mod page](https://mods.paradoxplaza.com/mods/86124/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 2,126 installs
+46. [SettingsManager](https://crowdin.com/project/cs2-settingsmanager) ([mod page](https://mods.paradoxplaza.com/mods/81578/Windows)) by *[zakuro9715](https://mods.paradoxplaza.com/authors/zakuro9715)* — ⬇️ 1,488 installs
+47. [StarQ's Workflow Kit](https://crowdin.com/project/cities2-mods) ([mod page](https://mods.paradoxplaza.com/mods/92671/Windows)) by *[StarQ](https://mods.paradoxplaza.com/authors/StarQ)* — ⬇️ 1,285 installs
+48. [Clearance Helper](https://crowdin.com/project/clearance-cs2) ([mod page](https://mods.paradoxplaza.com/mods/132866/Windows)) by *[LucaDevDesign](https://mods.paradoxplaza.com/authors/LucaDevDesign)* — ⬇️ 1,183 installs
+49. [[UNSTABLE] TLE 0.3 Preview](https://crowdin.com/project/Cities2-TrafficLightsEnhancement) ([mod page](https://mods.paradoxplaza.com/mods/89804/Windows)) by *[C2VMTLE](https://mods.paradoxplaza.com/authors/C2VMTLE)* — ⬇️ 1,181 installs
+50. [System Clock](https://crowdin.com/project/cites-skyline2-system-clock-mod) ([mod page](https://mods.paradoxplaza.com/mods/107257/Windows)) by *[ssharp0](https://mods.paradoxplaza.com/authors/ssharp0)* — ⬇️ 1,011 installs
+51. [Lumina [Experimental]](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/113470/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 489 installs
 52. [[UNSTABLE] TLE Canary](https://crowdin.com/project/Cities2-TrafficLightsEnhancement) ([mod page](https://mods.paradoxplaza.com/mods/79732/Windows)) by *[C2VMTLE](https://mods.paradoxplaza.com/authors/C2VMTLE)* — ⬇️ 193 installs
 53. [Minecraft HDRI Sky](https://crowdin.com/project/lumina) ([mod page](https://mods.paradoxplaza.com/mods/89556/Windows)) by *[Nyyoko](https://mods.paradoxplaza.com/authors/Nyyoko)* — ⬇️ 190 installs
-54. [Luca's Debug Utils [Mod Developer Tool]](https://crowdin.com/project/DebugUtils-cs2) ([mod page](https://mods.paradoxplaza.com/mods/138250/Windows)) by *[LucaDevDesign](https://mods.paradoxplaza.com/authors/LucaDevDesign)* — ⬇️ 117 installs
+54. [Luca's Debug Utils [Mod Developer Tool]](https://crowdin.com/project/DebugUtils-cs2) ([mod page](https://mods.paradoxplaza.com/mods/138250/Windows)) by *[LucaDevDesign](https://mods.paradoxplaza.com/authors/LucaDevDesign)* — ⬇️ 116 installs
 
 ## Other Projects
 
