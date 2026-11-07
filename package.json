@@ -3,8 +3,7 @@
   "module": "cli.ts",
   "type": "module",
   "scripts": {
-    "check": "bun --bun tsc && biome check --fix",
-    "push": "git add state \"List of Mods Seeking Translators.md\" && git commit -m \"chore(state): list update\" && git push"
+    "check": "bun --bun tsc && biome check --fix && bun test"
   },
   "devDependencies": {
     "@toverux/blanc-hopital": "^2.1.0",

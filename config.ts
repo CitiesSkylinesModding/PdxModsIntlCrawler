@@ -1,4 +1,6 @@
-export interface Config {
+import type { PlanConfig } from './plan.ts';
+
+export interface Config extends PlanConfig {
   readonly gameId: string;
   readonly tags: string[];
   readonly listMarkdownTemplateFilePath?: string;
@@ -12,12 +14,30 @@ export const config: Config = {
   // Filter mods by tags.
   // No need to seek for translation projects for ex. maps.
   tags: ['Code Mod'],
-  // Path to the markdown file that will be used as a template by the
-  // "./cli.ts list --write" command as a template.
+  // Path to the markdown file that "./cli.ts update" uses as a template.
   // Resolved from the project root.
   listMarkdownTemplateFilePath: 'list-template.md',
-  // Path to the markdown file that "./cli.ts list --write" will
-  // create/override with the list of mods with translation projects.
+  // Path to the markdown file that "./cli.ts update" creates/overrides with the list of
+  // translation projects.
   // Resolved from the project root.
-  listMarkdownFilePath: 'List of Mods Seeking Translators.md'
+  listMarkdownFilePath: 'List of Mods Seeking Translators.md',
+  // Mods left out of the list by hand, by Paradox Mods ID or by translation project link.
+  // Blacklisting a listed project is never announced as a removal.
+  blacklist: {
+    modIds: [],
+    links: []
+  },
+  // A mod whose name holds one of these words inside [] or () is left out, ex. "Foo [Deprecated]".
+  deadNameMarkers: [
+    'deprecated',
+    'obsolete',
+    'abandoned',
+    'discontinued',
+    'outdated',
+    'unmaintained',
+    'broken',
+    'dead'
+  ],
+  // A run removing more entries than this fails, unless run with --allow-mass-removal.
+  maxRemovals: 5
 };

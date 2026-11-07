@@ -2,20 +2,17 @@
 
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
-import * as process from 'node:process';
+import process from 'node:process';
+import { $ } from 'bun';
 import chalk from 'chalk';
 import yargs from 'yargs/yargs';
 import { config } from './config.ts';
+import { getModsDetails, listMods, probeLinks, stateFilePath } from './lib.ts';
+import { type Announcement, linksToProbe, planUpdate } from './plan.ts';
 
-// Hoisted regex for translation platforms (performance/useTopLevelRegex)
-const TRANSLATION_LINK_RE =
-  /(crowdin\.com\/(?:project|translate)\/[-a-z0-9]+|paratranz\.cn\/projects\/[0-9]+|weblate\.[^\s/]+\/projects\/[-a-z0-9_]+|transifex\.com\/[a-z0-9_-]+\/[a-z0-9_-]+|poeditor\.com\/(?:projects|join\/project)\/[A-Za-z0-9_-]+|lokalise\.com\/[a-z0-9_-]+|oneskyapp\.com\/(?:project|crowd)\/[0-9]+|gitlocalize\.com\/[a-z0-9_-]+\/[a-z0-9_-]+|pontoon\.mozilla\.org\/[A-Za-z0-9_-]+|translatewiki\.net\/wiki\/[A-Za-z0-9_:-]+|lingohub\.com\/[a-z0-9_-]+\/[a-z0-9_-]+)/i;
+const githubRemoteRe = /github\.com[:/](.+?)(?:\.git)?$/;
 
-const stateDir = path.join(import.meta.dir, 'state');
-const oldStateFilePath = path.join(stateDir, 'previous-state.json');
-const stateFilePath = path.join(stateDir, 'state.json');
-
-void yargs(process.argv.slice(2))
+yargs(process.argv.slice(2))
   .scriptName(import.meta.file)
   .usage('$0 <cmd> [args]')
   .help()
@@ -23,344 +20,201 @@ void yargs(process.argv.slice(2))
   .strict()
   .recommendCommands()
   .demandCommand()
+  .fail(false)
   .command({
-    command: 'discover',
-    describe: `Browse Paradox Mods to search for translation platforms links and writes results to output/state.json for later markdown generation. Uses configuration from config.ts.`,
+    command: 'update',
+    describe:
+      'Crawl Paradox Mods, probe translation projects, then write the state, the list and, when projects appeared or disappeared, the announcement payload. Never touches GitHub or Discord.',
     builder: args =>
-      args.option('write', {
-        type: 'boolean',
-        describe: `Whether to update state files even if no new/updated/deleted mods were detected.`,
-        default: false
-      }),
+      args
+        .option('payload', {
+          type: 'string',
+          describe: 'Where to write the announcement payload; deleted when there are no changes.',
+          demandOption: true
+        })
+        .option('allow-mass-removal', {
+          type: 'boolean',
+          describe: `Let a run remove more than ${config.maxRemovals} entries.`,
+          default: false
+        }),
     async handler(args) {
-      process.stdout.write(chalk.bold(`=> Listing mods\n\n`));
+      process.stdout.write(chalk.bold('=> Listing mods\n\n'));
+      const listingMods = await listMods(config.gameId, config.tags);
 
-      const listingMods = await listMods(config.gameId, config.tags.map(String));
-
-      process.stdout.write(chalk.bold(`\n=> Fetching mod details\n\n`));
-
+      process.stdout.write(chalk.bold('\n=> Fetching mod details\n\n'));
       const mods = await getModsDetails(listingMods);
 
-      process.stdout.write(chalk.bold(`\n=> Writing state file...\n\n`));
+      process.stdout.write(chalk.bold('\n=> Probing Crowdin projects\n\n'));
+      const probes = await probeLinks(linksToProbe(mods));
 
-      const translatableMods = mods
-        .filter(mod => mod.translationLink)
-        .sort((a, b) => Number.parseInt(a.modId, 10) - Number.parseInt(b.modId, 10));
+      const plan = planUpdate({
+        mods,
+        probes,
+        previousState: (await fs.exists(stateFilePath))
+          ? JSON.parse(await fs.readFile(stateFilePath, 'utf8'))
+          : [],
+        config,
+        template: await readTemplate(),
+        allowMassRemoval: args.allowMassRemoval,
+        now: new Date(),
+        repository: await getRepository()
+      });
 
-      process.stdout.write(
-        `Found ${chalk.bold.greenBright(translatableMods.length)} mods with translations.\n\n`
-      );
-
-      if (!args.write && (await fs.exists(oldStateFilePath))) {
-        const oldMods: Mod[] = JSON.parse(await fs.readFile(stateFilePath, 'utf8'));
-
-        const newIds = new Set(translatableMods.map(mod => mod.modId));
-        const oldIds = new Set(oldMods.map(mod => mod.modId));
-
-        const hasChanges =
-          [...newIds].some(id => !oldIds.has(id)) || [...oldIds].some(id => !newIds.has(id));
-
-        if (!hasChanges) {
-          process.stdout.write(
-            `${chalk.bold(
-              `No new/updated/deleted mods detected.`
-            )} Re-run the command using --write to force state files update.\n`
-          );
-
-          return;
-        }
+      if (!plan.ok) {
+        throw new Error(plan.failure);
       }
 
-      if (await fs.exists(oldStateFilePath)) {
-        process.stdout.write(`Moving ${stateFilePath} to ${oldStateFilePath}...\n`);
-
-        await fs.rename(stateFilePath, oldStateFilePath);
-      }
-
-      process.stdout.write(`Writing ${stateFilePath}...\n`);
-
-      await fs.writeFile(stateFilePath, `${JSON.stringify(translatableMods, null, 2)}\n`);
+      await fs.writeFile(stateFilePath, `${JSON.stringify(plan.state, null, 2)}\n`);
+      await fs.writeFile(
+        path.resolve(import.meta.dir, config.listMarkdownFilePath),
+        plan.listMarkdown
+      );
 
       process.stdout.write(
-        `\nRun ${chalk.bold('list')} or ${chalk.bold(
-          'changelog'
-        )} subcommands for generating summaries.\n`
+        chalk.bold(
+          `\n=> ${plan.state.length} projects listed, ${plan.changes.added.length} new, ${plan.changes.removed.length} removed\n\n`
+        )
       );
+
+      for (const entry of plan.changes.added) {
+        process.stdout.write(
+          chalk.greenBright(`+ ${entry.translationLink} (${entry.displayName})\n`)
+        );
+      }
+
+      for (const entry of plan.changes.removed) {
+        process.stdout.write(
+          chalk.redBright(`- ${entry.translationLink} (${entry.displayName})\n`)
+        );
+      }
+
+      if (plan.announcement) {
+        await fs.writeFile(args.payload, `${JSON.stringify(plan.announcement, null, 2)}\n`);
+        process.stdout.write(`\nAnnouncement payload written to ${args.payload}.\n`);
+      } else {
+        await fs.rm(args.payload, { force: true });
+      }
     }
   })
   .command({
-    command: 'list',
-    describe: `Generate a markdown list of mods with translation links from output/state.json.`,
+    command: 'announce',
+    describe:
+      'Send the payload written by "update": create the GitHub release on HEAD, then post to Discord.',
     builder: args =>
-      args.option('write', {
-        type: 'boolean',
-        describe: `Whether to write the content generated to the file specified in the config.ts file.`,
-        default: false
+      args.option('payload', {
+        type: 'string',
+        describe: 'The announcement payload written by "update".',
+        demandOption: true
       }),
     async handler(args) {
-      if (!(await fs.exists(stateFilePath))) {
-        throw new Error(`File not found: ${stateFilePath}. Run "discover" command first.`);
-      }
+      const announcement: Announcement = JSON.parse(await fs.readFile(args.payload, 'utf8'));
 
-      const mods: Mod[] = JSON.parse(await fs.readFile(stateFilePath, 'utf8'));
-
-      const listString = mods
-        .sort((a, b) => b.installedCount - a.installedCount)
-        .map((mod, i) => formatModLine(mod, i, false))
-        .join('\n');
-
-      let template = '{{list}}\n';
-
-      if (config.listMarkdownTemplateFilePath) {
-        const listTemplateFilePath = path.resolve(
-          import.meta.dir,
-          config.listMarkdownTemplateFilePath
-        );
-
-        if (await fs.exists(listTemplateFilePath)) {
-          template = await fs.readFile(listTemplateFilePath, 'utf8');
-        } else {
-          process.stderr.write(
-            chalk.bold.red(`Template file not found: ${listTemplateFilePath}\n`)
-          );
-        }
-      }
-
-      const contents = template
-        .replace('{{date}}', new Date().toLocaleString())
-        .replace('{{list}}', listString);
-
-      process.stdout.write(contents);
-
-      if (args.write) {
-        const filePath = path.resolve(import.meta.dir, config.listMarkdownFilePath);
-
-        await fs.writeFile(filePath, contents);
-
-        process.stdout.write(chalk.bold(`\nWritten to "${filePath}".\n`));
-      }
+      await createRelease(announcement);
+      await postToDiscord(announcement);
     }
   })
-  .command({
-    command: 'changelog',
-    describe: `Generate a markdown changelog of mods with translation links from output/state.json.`,
-    async handler() {
-      let oldMods: Mod[] = [];
-      if (await fs.exists(oldStateFilePath)) {
-        oldMods = JSON.parse(await fs.readFile(oldStateFilePath, 'utf8'));
-      }
-
-      if (!(await fs.exists(stateFilePath))) {
-        throw new Error(`File not found: ${stateFilePath}. Run "discover" command first.`);
-      }
-
-      const mods: Mod[] = JSON.parse(await fs.readFile(stateFilePath, 'utf8'));
-
-      const newMods = mods
-        .filter(mod => !oldMods.some(oldMod => oldMod.modId == mod.modId))
-        .sort((a, b) => b.installedCount - a.installedCount);
-
-      const deletedMods = oldMods
-        .filter(oldMod => !mods.some(mod => mod.modId == oldMod.modId))
-        .sort((a, b) => b.installedCount - a.installedCount);
-
-      const updatedMods = mods
-        .filter(mod =>
-          oldMods.some(
-            oldMod => oldMod.modId == mod.modId && oldMod.translationLink != mod.translationLink
-          )
-        )
-        .sort((a, b) => b.installedCount - a.installedCount);
-
-      if (newMods.length === 0 && updatedMods.length === 0 && deletedMods.length === 0) {
-        process.stdout.write(
-          `No changes detected between ${stateFilePath} and ${oldStateFilePath} (if it exists).\n`
-        );
-
-        return;
-      }
-
-      const listString = [
-        '**List update!**',
-        ...(newMods.length > 0
-          ? [
-              `\nNew translation projects discovered:`,
-              ...newMods.map((mod, i) => formatModLine(mod, i, true))
-            ]
-          : []),
-        ...(updatedMods.length > 0
-          ? [
-              `\nMods that updated their translation project link:`,
-              ...updatedMods.map((mod, i) => formatModLine(mod, i, true))
-            ]
-          : []),
-        ...(deletedMods.length > 0
-          ? [
-              `\nDeleted mods or translation projects:`,
-              ...deletedMods.map((mod, i) => formatModLine(mod, i, true))
-            ]
-          : []),
-        ''
-      ].join('\n');
-
-      process.stdout.write(`${listString}\n`);
-    }
-  }).argv;
-
-interface ListingMod {
-  readonly modId: string;
-
-  readonly displayName: string;
-
-  readonly author: string;
-
-  readonly os: string;
-
-  readonly installedCount: number;
-}
-
-interface Mod extends ListingMod {
-  readonly translationLink: string | undefined;
-}
-
-async function listMods(gameName: string, tags: readonly string[]): Promise<readonly ListingMod[]> {
-  const allMods: ListingMod[] = [];
-
-  let page = 0;
-  do {
-    // biome-ignore lint/performance/noAwaitInLoops: we don't want to make too many parallel requests anyway.
-    const { totalCount, mods } = await fetchPage(page++);
-    allMods.push(...mods);
-
-    process.stdout.write(`Listed ${allMods.length} of ${totalCount} mods...\n`);
-
-    if (allMods.length >= totalCount) {
-      break;
-    }
-    // biome-ignore lint/correctness/noConstantCondition: break condition
-  } while (true);
-
-  return allMods;
-
-  async function fetchPage(page: number) {
-    const response = await fetch('https://api.paradox-interactive.com/mods', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        gameName,
-        tags,
-        page,
-        pageSize: 100 // max allowed by PDX Mods
-      })
-    });
-
-    interface Body {
-      readonly totalCount: number;
-
-      readonly mods: readonly ListingMod[];
-    }
-
-    const { mods, totalCount } = await parseApiResponse<Body>(response);
-
-    return {
-      totalCount,
-      mods: mods.map<ListingMod>(mod => ({
-        modId: mod.modId,
-        displayName: mod.displayName,
-        author: mod.author,
-        os: mod.os,
-        installedCount: mod.installedCount
-      }))
-    };
-  }
-}
-
-async function getModsDetails(listingMods: readonly ListingMod[]): Promise<readonly Mod[]> {
-  const mods: Mod[] = [];
-
-  for (let i = 0; i < listingMods.length; i++) {
-    // biome-ignore lint/style/noNonNullAssertion: index is always valid
-    const listingMod = listingMods[i]!;
-
-    process.stdout.write(`${i + 1}/${listingMods.length}: ${listingMod.displayName}... `);
-
-    // biome-ignore lint/performance/noAwaitInLoops: we don't want to make too many parallel requests anyway.
-    const mod = await fetchMod(listingMod);
-    mods.push(mod);
-
-    process.stdout.write(
-      mod.translationLink
-        ? chalk.greenBright(`✅ Found ${chalk.bold(mod.translationLink)}\n`)
-        : chalk.dim('❌ No translations\n')
+  .parseAsync()
+  .catch((error: unknown) => {
+    process.stderr.write(
+      chalk.red(`${error instanceof Error ? (error.stack ?? error.message) : error}\n`)
     );
+    process.exitCode = 1;
+  });
+
+async function readTemplate(): Promise<string> {
+  if (!config.listMarkdownTemplateFilePath) {
+    return '{{list}}\n';
   }
 
-  return mods;
-
-  async function fetchMod(listingMod: ListingMod): Promise<Mod> {
-    const response = await fetch(
-      `https://api.paradox-interactive.com/mods?modId=${listingMod.modId}&os=${listingMod.os}`,
-      { method: 'GET' }
-    );
-
-    interface Body {
-      readonly modDetail: {
-        readonly longDescription: string;
-        readonly externalLinks: ReadonlyArray<{ url: string }>;
-      };
-    }
-
-    const { modDetail } = await parseApiResponse<Body>(response);
-
-    const textToSearch = `
-      ${modDetail.externalLinks.map(link => `${link.url}\n`)}
-      ${modDetail.longDescription}`;
-
-    const translationLinkLike = textToSearch.match(TRANSLATION_LINK_RE)?.[0];
-
-    return {
-      ...listingMod,
-      translationLink: translationLinkLike && `https://${translationLinkLike}`
-    };
-  }
+  return await fs.readFile(
+    path.resolve(import.meta.dir, config.listMarkdownTemplateFilePath),
+    'utf8'
+  );
 }
 
-async function parseApiResponse<Body>(response: Response): Promise<Body> {
-  interface BodyResponse {
-    readonly result: 'OK' | 'Failure';
+/** The GitHub repository as `owner/name`, from Actions or from the origin remote. */
+async function getRepository(): Promise<string> {
+  const remote = process.env.GITHUB_REPOSITORY
+    ? undefined
+    : await $`git remote get-url origin`.text();
+  const repository = process.env.GITHUB_REPOSITORY ?? remote?.trim().match(githubRemoteRe)?.[1];
 
-    readonly errorMessage?: string;
+  if (!repository) {
+    throw new Error('Cannot tell the GitHub repository: set GITHUB_REPOSITORY.');
   }
 
-  let body: BodyResponse = { result: 'Failure', errorMessage: 'Unknown error' };
+  return repository;
+}
 
-  try {
-    body = (await response.json()) as BodyResponse;
-  } catch {
-    // Ignore body consumption error.
+async function createRelease(announcement: Announcement): Promise<void> {
+  const repository = process.env.GITHUB_REPOSITORY;
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!(repository && token)) {
+    throw new Error('GITHUB_REPOSITORY and GITHUB_TOKEN must both be set.');
   }
 
-  if (!response.ok || body.result != 'OK') {
+  const headers = {
+    // biome-ignore lint/style/useNamingConvention: HTTP header
+    Authorization: `Bearer ${token}`,
+    // biome-ignore lint/style/useNamingConvention: HTTP header
+    Accept: 'application/vnd.github+json'
+  };
+
+  const api = `https://api.github.com/repos/${repository}`;
+
+  const existing = await fetch(`${api}/git/ref/tags/${announcement.tag}`, { headers });
+
+  if (existing.ok) {
+    process.stdout.write(`Tag ${announcement.tag} already exists, skipping the release.\n`);
+    return;
+  }
+
+  if (existing.status != 404) {
     throw new Error(
-      `Failed to fetch "${response.url}" (${response.status} ${response.statusText}): ${body.errorMessage}`
+      `Failed to check tag ${announcement.tag}: ${existing.status} ${await existing.text()}`
     );
   }
 
-  return body as Body;
+  const sha = (await $`git rev-parse HEAD`.text()).trim();
+
+  const response = await fetch(`${api}/releases`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      // biome-ignore lint/style/useNamingConvention: GitHub API field
+      tag_name: announcement.tag,
+      // biome-ignore lint/style/useNamingConvention: GitHub API field
+      target_commitish: sha,
+      name: announcement.releaseTitle,
+      body: announcement.releaseBody
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to create the release: ${response.status} ${await response.text()}`);
+  }
+
+  process.stdout.write(chalk.green(`Created release ${announcement.releaseUrl} on ${sha}.\n`));
 }
 
-function formatModLine(mod: Mod, index: number, changelog: boolean): string {
-  // biome-ignore lint/style/noNonNullAssertion: can't be null here
-  const host = new URL(mod.translationLink!).host;
-  const platform = host == 'crowdin.com' ? '' : ` (on ${host})`;
+async function postToDiscord(announcement: Announcement): Promise<void> {
+  const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
-  const installedCount = Intl.NumberFormat().format(mod.installedCount);
+  if (!webhookUrl) {
+    process.stdout.write('::warning::DISCORD_WEBHOOK_URL is not set, skipping the Discord post.\n');
+    return;
+  }
 
-  return `${index + 1}. [${mod.displayName}](${mod.translationLink})${platform}${
-    changelog ? '' : ` ([mod page](https://mods.paradoxplaza.com/mods/${mod.modId}/${mod.os}))`
-  } by *[${mod.author}](https://mods.paradoxplaza.com/authors/${encodeURIComponent(
-    mod.author
-  )})* — ⬇️ ${installedCount} installs`;
+  const response = await fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(announcement.discord)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Discord rejected the post: ${response.status} ${await response.text()}`);
+  }
+
+  process.stdout.write(chalk.green('Posted to Discord.\n'));
 }

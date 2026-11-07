@@ -8,8 +8,8 @@ projects. This is helpful for translators to find mods that need their help.
 It uses the Paradox HTTP API to iterate over mod descriptions and external links and find the ones
 that have a translation project.
 
-This repository was made for Cities: Skylines II, but fork it and just delete `state/` to start
-fresh on another Paradox game.
+This repository was made for Cities: Skylines II, but you can fork it for another Paradox game (see
+[Forking](#forking)).
 
 Supported platforms include:
 
@@ -27,88 +27,61 @@ Supported platforms include:
 - Install [mise-en-place](https://mise.jdx.dev),
 - Run `mise i` (to install the required version of bun),
 - Run `./cli.ts help`.
-- Edit `config.ts` to set the constants to use each time you use the CLI once and for all (ex. the
-  game ID).
+- Edit `config.ts` to set the game ID, the blacklist and the dead-name markers.
+
+The list holds one entry per translation project: mods linking the same project share one entry,
+shown under the most installed of them, with a "+N mods on this project" note. These are left out:
+
+- mods whose name holds a dead-name marker inside brackets or parentheses, ex. `Foo [Deprecated]`
+  (the `deadNameMarkers` setting),
+- mods or projects on the blacklist (`blacklist.modIds` and `blacklist.links`); blacklisting a
+  listed project is never announced as a removal,
+- Crowdin projects that were deleted or made private.
 
 ### CLI Commands
 
-#### `discover`
+#### `update`
 
-Scans the API for mods with translation projects and lists them as they are found.
+Crawls Paradox Mods, checks each Crowdin project still answers publicly, then writes
+`state/state.json` and the list. It compares the new list with the previous one by project link and,
+when projects appeared or disappeared, writes the announcement to the `--payload` path (and deletes
+any file there otherwise). It never creates a release or posts to Discord, so it's safe to run
+locally.
 
-Takes the game to generate the list of mods for, the game slug ID can be found on Paradox's website,
-ex. https://mods.paradoxplaza.com/games/cities_skylines_2.
-
-Generates a `state/state.json` file that serves to the other commands for further processing.
-
-When there is already a `state/state.json` file, it will be moved to `state/previous-state.json` and
-a new state file will be generated, allowing diffing and changelog generation.
-
-Example:
+The run fails without writing anything when a Crowdin project gives an unexpected answer, when a
+listing page comes back empty, or when it would remove more than 5 projects. Pass
+`--allow-mass-removal` when such a removal is a real cleanup.
 
 ```
-./cli.ts discover
+./cli.ts update --payload /tmp/announcement.json
 ```
 
-#### `list`
+#### `announce`
 
-Generates a list of all mods with a translation project from the `state/state.json`.
-
-Example:
-
-```
-./cli.ts list
-```
-
-Example output:
-
-> This list is generated automatically. See second post in thread for more info.
->
-> 1. [ExtraLib](https://crowdin.com/project/extralib) by *Triton Supreme* — 198,080 installs
-> 2. [529 Tiles](https://crowdin.com/project/592-tiles) by *algernon* — 183,618 installs
-> 3. [Line Tool](https://crowdin.com/project/line-tool-cs2) by *algernon* — 178,726 installs
-> 4. [ExtraLandscapingTools](https://crowdin.com/project/extralandscapingtools) by *Triton
-     Supreme* — 161,494 installs
-> 5. [Plop the Growables](https://crowdin.com/project/plop-the-growables) by *algernon* — 72,466
-     installs
-> 6. [ExtraDetailingTools](https://crowdin.com/project/extradetailingtools) by *Triton Supreme* —
-     41,082 installs
-> 7. [ExtraAssetsImporter](https://crowdin.com/project/extraassetsimporter) by *Triton Supreme* —
-     39,646 installs
-> 8. [Skyve [BETA]](https://crowdin.com/project/load-order-mod-2) by *TDW* — 29,505 installs
-> 9. [First Person Camera Continued](https://crowdin.com/project/cs2-dfirst-person-camera-continued)
-     by *Cgameworld* — 22,086 installs
-> 10. [AdvancedSimulationSpeed](https://crowdin.com/project/cs2-advancedsimulationspeed) by
-      *zakuro9715* — 6,353 installs
-> 11. [Lumina](https://crowdin.com/project/lumina) by *Nyyoko* — 5,699 installs
-> 12. [SettingsManager](https://crowdin.com/project/cs2-settingsmanager) by *zakuro9715* — 647
-      installs
-
-#### `changelog`
-
-Generates a changelog of all mods with a translation project by comparing `state.json` and
-`previous-state.json`.
-
-Example:
+Sends a payload written by `update`: creates a GitHub release tagged `list-YYYY-MM-DD-HHMM` on the
+current `HEAD` (skipped if the tag already exists), then posts the changes to Discord. Needs
+`GITHUB_TOKEN` and `GITHUB_REPOSITORY`; without `DISCORD_WEBHOOK_URL` it only warns and skips the
+post.
 
 ```
-./cli.ts changelog
+./cli.ts announce --payload /tmp/announcement.json
 ```
 
-Example output:
+### GitHub workflow
 
-> **List update!**
->
-> New translation projects discovered:
-> 1. [ExtraDetailingTools](https://crowdin.com/project/extradetailingtools) by *Triton Supreme* —
-     41,082 installs
-> 2. [Plop the Growables](https://crowdin.com/project/plop-the-growables) by *algernon* — 72,466
-     installs
->
-> Mods that updated their translation project link:
-> 1. [First Person Camera Continued](https://crowdin.com/project/cs2-dfirst-person-camera-continued)
-     by *Cgameworld* — 22,086 installs
->
-> Deleted mods or translation projects:
-> 1. [ExtendedRadio](https://crowdin.com/project/extendedradio) by *Triton Supreme* — 35,671
-     installs
+The "Chore: Update list" workflow runs daily. Its first job runs `update`, then `bun run check`, then
+commits and pushes the list. A second job runs `announce` only after a successful push with changes
+to announce; if it fails, "Re-run failed jobs" sends the same announcement again without creating a
+second release.
+
+Manual runs take two inputs:
+
+- `announce` (default on): turn it off to update the list silently, ex. to rebaseline it.
+- `allow_mass_removal` (default off): let the run remove more than 5 projects.
+
+The Discord post needs a webhook URL stored as the `DISCORD_WEBHOOK_URL` repository secret.
+
+### Forking
+
+Delete `state/state.json` and set the game in `config.ts`. Run the workflow manually once with
+`announce` off: with no previous state, every project would otherwise be announced as new.
