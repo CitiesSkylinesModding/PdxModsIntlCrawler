@@ -5,22 +5,15 @@
 A simple CLI tool to find mods from [Paradox Mods](https://mods.paradoxplaza.com/) proposing community-supported translation
 projects. This is helpful for translators to find mods that need their help.
 
+Read the list here, updated daily: [List of Mods Seeking Translators](list-of-mods-seeking-translators.md).
+
 It uses the Paradox HTTP API to iterate over mod descriptions and external links and find the ones
 that have a translation project.
 
 This repository was made for Cities: Skylines II, but you can fork it for another Paradox game (see
 [Forking](#forking)).
 
-Supported platforms include:
-
-- [Crowdin](https://crowdin.com)
-- [Paratranz](https://paratranz.cn)
-- [Weblate](https://weblate.org)
-- [Transifex](https://transifex.com)
-- [POEditor](https://poeditor.com)
-- [Lokalise](https://lokalise.com)
-- [GitLocalize](https://gitlocalize.com)
-- [LingoHub](https://lingohub.com)
+Supported platforms: [Crowdin](https://crowdin.com), [Paratranz](https://paratranz.cn), [Weblate](https://weblate.org), [Transifex](https://transifex.com), [POEditor](https://poeditor.com), [Lokalise](https://lokalise.com), [GitLocalize](https://gitlocalize.com) and [LingoHub](https://lingohub.com).
 
 ## Usage
 
@@ -43,7 +36,7 @@ shown under the most installed of them, with a "+N mods on this project" note. T
 #### `update`
 
 Crawls Paradox Mods, checks each Crowdin project still answers publicly, then writes
-`state/state.json` and the list. It compares the new list with the previous one by project link and,
+`state/state.json` and `list-of-mods-seeking-translators.md`. It compares the new list with the previous one by project link and,
 when projects appeared or disappeared, writes the announcement to the `--payload` path (and deletes
 any file there otherwise). It never creates a release or posts to Discord, so it's safe to run
 locally.

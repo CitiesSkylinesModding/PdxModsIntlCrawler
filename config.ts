@@ -20,7 +20,7 @@ export const config: Config = {
   // Path to the markdown file that "./cli.ts update" creates/overrides with the list of
   // translation projects.
   // Resolved from the project root.
-  listMarkdownFilePath: 'List of Mods Seeking Translators.md',
+  listMarkdownFilePath: 'list-of-mods-seeking-translators.md',
   // Mods left out of the list by hand, by Paradox Mods ID or by translation project link.
   // Blacklisting a listed project is never announced as a removal.
   blacklist: {

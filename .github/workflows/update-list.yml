@@ -53,9 +53,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          CHANGED=$(git status --porcelain -- state "List of Mods Seeking Translators.md" | wc -l)
+          CHANGED=$(git status --porcelain -- state list-of-mods-seeking-translators.md | wc -l)
           if [ "$CHANGED" -gt 0 ]; then
-            git add state "List of Mods Seeking Translators.md"
+            git add state list-of-mods-seeking-translators.md
             git commit -m "chore(state): list update"
             git push origin HEAD:main
           else
