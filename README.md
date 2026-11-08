@@ -80,7 +80,9 @@ Manual runs take two inputs:
 - `announce` (default on): turn it off to update the list silently, ex. to rebaseline it.
 - `allow_mass_removal` (default off): let the run remove more than 5 projects.
 
-The Discord post needs a webhook URL stored as the `DISCORD_WEBHOOK_URL` repository secret.
+The Discord post needs a webhook URL stored as the `DISCORD_WEBHOOK_URL` repository secret. To post
+into a forum post or a thread, create the webhook on its parent channel and append
+`?thread_id=<thread ID>` to the URL.
 
 ### Forking
 
