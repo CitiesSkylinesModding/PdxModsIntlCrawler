@@ -1,11 +1,19 @@
+<div align="center">
+
+<img src="assets/bot-avatar.svg" alt="" width="128">
+
 # PdxModsIntlCrawler
+
+Finds the [Paradox Mods](https://mods.paradoxplaza.com/) that welcome community translations.
+
+**[📋 List of Mods Seeking Translators](list-of-mods-seeking-translators.md)**, updated daily
+
+</div>
 
 > Reference maintainer(s): @toverux
 
-A simple CLI tool to find mods from [Paradox Mods](https://mods.paradoxplaza.com/) proposing community-supported translation
-projects. This is helpful for translators to find mods that need their help.
-
-Read the list here, updated daily: [List of Mods Seeking Translators](list-of-mods-seeking-translators.md).
+A simple CLI tool to find mods from Paradox Mods proposing community-supported translation projects.
+This is helpful for translators to find mods that need their help.
 
 It uses the Paradox HTTP API to iterate over mod descriptions and external links and find the ones
 that have a translation project.
