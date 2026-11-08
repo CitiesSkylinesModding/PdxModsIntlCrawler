@@ -374,7 +374,7 @@ function formatDiscordMessage(
   const items = sections.flatMap(({ heading, entries }) =>
     entries.map((entry, i) => ({
       heading: i == 0 ? `**${heading}**` : undefined,
-      line: `- [${entry.displayName}](${entry.translationLink})`
+      line: `- [${entry.displayName}](${entry.translationLink}) by ${entry.author} — ⬇️ ${numberFormat.format(entry.installedCount)} installs`
     }))
   );
 

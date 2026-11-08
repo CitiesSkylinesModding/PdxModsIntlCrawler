@@ -558,10 +558,10 @@ describe('announcement', () => {
     expect(announcement?.discord).toEqual({
       content: [
         '**New translation projects**',
-        '- [Ping @everyone Mod](https://crowdin.com/project/ping)',
+        '- [Ping @everyone Mod](https://crowdin.com/project/ping) by a — ⬇️ 5 installs',
         '',
         '**Removed translation projects**',
-        '- [Move It](https://crowdin.com/project/csl2-mod-move-it)'
+        '- [Move It](https://crowdin.com/project/csl2-mod-move-it) by yenyang — ⬇️ 740,786 installs'
       ].join('\n'),
       flags: 4,
       // biome-ignore lint/style/useNamingConvention: Discord API field
@@ -574,7 +574,7 @@ describe('announcement', () => {
     const mods = Array.from({ length: 20 }, (_, i) =>
       mod(
         `${i + 1}`,
-        `Project ${String(i + 1).padStart(2, '0')} ${'x'.repeat(40)}`,
+        `Project ${String(i + 1).padStart(2, '0')} ${'x'.repeat(10)}`,
         'a',
         100 - i,
         `https://crowdin.com/project/project-${i + 1}`
