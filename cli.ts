@@ -20,7 +20,21 @@ yargs(process.argv.slice(2))
   .strict()
   .recommendCommands()
   .demandCommand()
-  .fail(false)
+  // Usage errors print the help once (a typo reports twice: "Did you mean" then "Unknown
+  // argument"); errors thrown by a handler go to the catch below.
+  .fail((message, error, instance) => {
+    if (error) {
+      throw error;
+    }
+
+    if (process.exitCode != 1) {
+      instance.showHelp();
+      process.stderr.write('\n');
+    }
+
+    process.stderr.write(chalk.red(`${message}\n`));
+    process.exitCode = 1;
+  })
   .command({
     command: 'update',
     describe:
